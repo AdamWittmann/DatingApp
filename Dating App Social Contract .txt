@@ -1,0 +1,27 @@
+﻿stand up times
+* Friday @ 10am
+○ meeting locations
+* Library 
+○ communication response times
+* Within 6 hours max
+○ communication methods
+* Text/imessage 
+○ participation
+* Contribute as much as you can
+* Don’t leave everything to one person
+○ preparation
+* Come with laptop charged/ charger and ready to work 
+○ documentation
+* create a new branch every time you make new changes (even if it is just one file or one line of code).
+* before merging code to main, open a pull request, and assign TWO reviewers. once BOTH reviewers have
+* approved of the changes, you can merge your changes to main and close the PR.
+* when you push code that completes a task for a specific issue (user story, defect, etc.), reference the issue in
+* the commit message. ex: git commit -m “added sql query to get all users for issue #3”
+○ etiquette 
+* be on time, everyone’s ideas are important, and don’t interject/interrupt
+○ keeping wall of work/assignments updated
+* As often as possible 
+* Communicate
+* Plug in where you left off before you close your laptop
+○ late work
+* Communicate with the team and come up with a realistic timeline
