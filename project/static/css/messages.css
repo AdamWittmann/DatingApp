@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+body{
+    background-color: #4B5267;
+}
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 10px;
+}
+.matches{
+    padding: 10px;
+    border-bottom: 1px solid #BE97C6;
+}
+.matches {
+    display: flex;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Ensure the matches stay in one line */
+    padding-top: 10px;
+}
