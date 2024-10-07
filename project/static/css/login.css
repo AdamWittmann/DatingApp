@@ -1,0 +1,21 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+header {
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+
+body div {
+    margin: 0px;
+    padding: 150px;
+    height: 100%;
+    max-width: 100px, 250px;
+    font-size: 30px;
+    position: absolute;
+    justify-content: center;
+    display: block;
+}
