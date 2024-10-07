@@ -9,13 +9,37 @@ header {
     text-align: center;
 }
 
-body div {
-    margin: 0px;
-    padding: 150px;
-    height: 100%;
-    max-width: 100px, 250px;
-    font-size: 30px;
-    position: absolute;
+body {
     justify-content: center;
-    display: block;
+    align-items: center;
+}
+
+.login {
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.login input,
+.login a,
+.login button {
+    border-radius: 20px;
+}
+
+.login input {
+    padding: 10px;
+}
+
+.login button {
+    padding: 10px;
+}
+
+.login label,
+.login input,
+.login a,
+.login button,
+.login span {
+    margin-bottom: 15px;
+    /* Adds 15px space between elements */
 }
