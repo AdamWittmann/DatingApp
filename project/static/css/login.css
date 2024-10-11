@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    font-size: 60px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 60px;
+    color: #BE97C6
+}
+
+body {
+    justify-content: center;
+    align-items: center;
+    background-color: #4B5267;
+
+}
+
+.login {
+    font-size: 20px;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.login input,
+.login a,
+.login button {
+    border-radius: 20px;
+}
+
+#forgotpass {
+    font-size: 15px;
+}
+
+/*Dont have an account?*/
+#DHAA {
+    font-size: 15px;
+}
+
+#createacc {
+    font-size: 13px;
+}
+
+.login input {
+    padding: 10px;
+    border: 3px solid #BE97C6;
+}
+
+.login button {
+    padding: 10px;
+    background-color: #BE97C6;
+    font-weight: bold;
+
+}
+
+.login label,
+.login input,
+.login a,
+.login button {
+    margin-bottom: 10px;
+    /* Adds 15px space between elements */
+}
