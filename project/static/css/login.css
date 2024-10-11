@@ -9,19 +9,29 @@ header {
     font-size: 60px;
     font-weight: bold;
     text-align: center;
+    margin-top: 20px;
     margin-bottom: 60px;
-    color: #BE97C6
+    color: #BE97C6;
+    text-shadow: 2px 4px #2E294E;
 }
 
 body {
+    color: white;
     justify-content: center;
     align-items: center;
     background-color: #4B5267;
 
 }
 
+body div h1 {
+    font-size: 25px;
+    margin-bottom: 20px;
+    color: white;
+    font-weight: bold;
+}
+
 .login {
-    font-size: 20px;
+    font-size: 16px;
     align-items: center;
     text-align: center;
     display: flex;
@@ -49,13 +59,14 @@ body {
 
 .login input {
     padding: 10px;
-    border: 3px solid #BE97C6;
+    border: 3px solid #2E294E;
 }
 
 .login button {
     padding: 10px;
-    background-color: #BE97C6;
+    background-color: #EFBCD5;
     font-weight: bold;
+    color: #2E294E;
 
 }
 
@@ -65,4 +76,13 @@ body {
 .login button {
     margin-bottom: 10px;
     /* Adds 15px space between elements */
+}
+
+.login a {
+    color: #8661C1;
+    text-decoration: none;
+}
+
+.login a:hover {
+    color: #EFBCD5;
 }
