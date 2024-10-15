@@ -7,9 +7,30 @@ body {
     box-sizing: border-box;
 }
 
+header {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: left;
+    margin-left: 16px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    color: #BE97C6;
+    text-shadow: 2px 4px #2E294E;
+}
+
+div h1 {
+    color: white;
+    letter-spacing: 2px;
+}
+
 .container {
     padding: 16px;
     background-color: #4B5267;
+}
+
+form div label {
+    color: white;
+    font-size: 16px;
 }
 
 input[type=text],
@@ -20,6 +41,9 @@ input[type=password] {
     display: inline-block;
     border: none;
     background: #f1f1f1;
+    border-radius: 30px;
+    letter-spacing: 2px;
+    background-color: rgba(255, 255, 255, 0.6);
 }
 
 input[type=text]:focus,
@@ -33,15 +57,13 @@ hr {
     margin-bottom: 25px;
 }
 
-.registerbtn {
-    background-color: #8661C1;
-    color: white;
-    padding: 16px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
+#registerbtn {
+    padding: 10px;
+    background-color: #EFBCD5;
+    font-weight: bold;
+    color: #2E294E;
+    border-radius: 20px;
+
 }
 
 .registerbtn:hover {
