@@ -79,10 +79,11 @@ body div h1 {
 }
 
 .login a {
-    color: #8661C1;
+    color: #EFBCD5;
     text-decoration: none;
 }
 
 .login a:hover {
-    color: #EFBCD5;
+
+    color: #8661C1;
 }
