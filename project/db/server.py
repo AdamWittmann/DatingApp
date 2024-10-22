@@ -22,8 +22,13 @@ app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
 db = SQLAlchemy(app)
 
 # import table to be created in postgres
-from db.schema.table import Table
-
+from db.schema.user import User
+from db.schema.likes import Likes
+from db.schema.matches import Matches
+from db.schema.profile import Profile
+from db.schema.physicalFeatures import PhysicalFeatures
+from db.schema.education import Education
+from db.schema.occupation import Occupation
 # verify the db connection is successful
 with app.app_context():
     # attempt to connect to db, print msgs if successful
