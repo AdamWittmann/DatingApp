@@ -5,23 +5,23 @@ from db.server import app
 
 # create a webpage based off of the html in templates/index.html
 @app.route('/')
-def index():
+def login():
     return render_template("login.html")
 
 @app.route('/signup')
-def index():
+def signup():
     return render_template("signup.html")
 
 @app.route('/filtr')
-def index():
+def filtr():
     return render_template("filtr.html")
 
 @app.route('/messages')
-def index():
+def messages():
     return render_template("messages.html")
 
 @app.route('/profile')
-def index():
+def profile():
     return render_template("profile.html")
 
 if __name__ == "__main__":
