@@ -8,6 +8,11 @@ body{
 }
 .imgButton {
     padding-top: 10px;
+   
+    
+}
+.imgButton>button{
+    
 }
 
 
