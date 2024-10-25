@@ -1,0 +1,41 @@
+body{
+    background-color:#4B5267;
+    height: 100vh; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    margin: 0;
+    text-align: center;
+}
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.footer-nav {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Centers the buttons horizontally */
+    gap: 15px; /* Space between buttons */
+}
+
+.footer-nav li {
+    display: inline; /* Makes the list items horizontal */
+}
+
+.footer-nav a {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #4CAF50; /* Button color */
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+.footer-nav a:hover {
+    background-color: #45a049; /* Darker color on hover */
+}
