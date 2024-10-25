@@ -1,15 +1,49 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #4B5267;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-* {
-    box-sizing: border-box;
+header {
+    font-size: 60px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    color: #BE97C6;
+    text-shadow: 2px 4px #2E294E;
+}
+
+body {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* Full height to center vertically */
+    color: white;
+    justify-content: center;
+    background-color: #4B5267;
+
+}
+
+body form div h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: white;
+    font-weight: bold;
 }
 
 .container {
     padding: 16px;
     background-color: #4B5267;
+    max-width: 400px;
+    text-align: center;
+}
+
+.text-box {
+    border-radius: 20px;
 }
 
 input[type=text],
@@ -20,6 +54,7 @@ input[type=password] {
     display: inline-block;
     border: none;
     background: #f1f1f1;
+    border: 3px solid #2E294E;
 }
 
 input[type=text]:focus,
@@ -33,15 +68,26 @@ hr {
     margin-bottom: 25px;
 }
 
+body form a {
+    color: #EFBCD5;
+    text-decoration: none;
+}
+
+body form a:hover {
+    color: #8661C1;
+}
+
 .registerbtn {
-    background-color: #8661C1;
-    color: white;
+    background-color: #EFBCD5;
+    font-weight: bold;
+    color: #2E294E;
     padding: 16px 20px;
-    margin: 8px 0;
+    margin-top: 15px;
     border: none;
     cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
+    width: 100px;
+    border-radius: 20px;
+    display: inline-block;
 }
 
 .registerbtn:hover {
