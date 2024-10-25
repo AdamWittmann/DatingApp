@@ -1,23 +1,40 @@
 body{
     background-color:#4B5267;
     height: 100vh; 
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
+    display: grid;
+     
     margin: 0;
     text-align: center;
 }
+.imgButton {
+    padding-top: 10px;
+}
+
+
 .buttons {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    justify-content: center;
+    align-items: center;
+
+    
+}
+.buttons>button{
+    border-radius: 50px;
+    width: 60%;
+    
+    
 }
 .footer-nav {
     list-style-type: none;
+    justify-content: center;
+    
     padding: 0;
     display: flex;
     justify-content: center; /* Centers the buttons horizontally */
     gap: 15px; /* Space between buttons */
+    
 }
 
 .footer-nav li {
@@ -28,14 +45,16 @@ body{
     display: inline-block;
     padding: 10px 20px;
     text-decoration: none;
-    background-color: #4CAF50; /* Button color */
-    color: white;
+    background-color: #EFBCD5; /* Button color */
+    color: black;
     border-radius: 5px;
     text-align: center;
     font-family: Arial, sans-serif;
     font-size: 16px;
+    border-radius: 50px;
+    
 }
 
 .footer-nav a:hover {
-    background-color: #45a049; /* Darker color on hover */
+    background-color: #8661c1 /* Darker color on hover */
 }
