@@ -8,9 +8,6 @@ from db.server import db
 from db.schema.user import User
 
 # create a webpage based off of the html in templates/index.html
-@app.route('/')
-def login():
-    return render_template("login.html")
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -24,6 +21,23 @@ def signup():
 
         return redirect(url_for('login'))
     return render_template("signup.html")
+
+@app.route('/', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+
+        email = request.form['Email']
+        password = request.form['Password']
+
+        user = db.session.query(User).filter_by(Email=email).first()
+        if user and user.Password == password:
+            return redirect(url_for('filtr'))
+
+        else:
+            error = 'Invalid username or password'
+            return render_template('login.html', error=error)
+
+    return render_template('login.html')
 
 @app.route('/filtr')
 def filtr():
