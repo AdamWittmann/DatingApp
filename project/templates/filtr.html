@@ -4,7 +4,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/project/static/css/Filtr.css">
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filtr - Home</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- THIS IS LOGO -->
+  <header>
+    <h1 class="logo">Filtr</h1>
+    <div class="top-buttons">
+      <button class="top-button" onclick="goToMessages()">Messages</button>
+      <button class="top-button" onclick="editFilters()">Filters</button>
+    </div>
+  </header>
+ 
+  <!-- MAIN  -->
+  <main>
+    <!-- THIS IS WHERE I NEED TO IMPLEMENT THE PICTURES OF FAKE PEOPLE BUT I DON'T KNOW HOW YET - FOR NOW JUST SWIPING/BUTTON  -->
+    <div class="swipe-area">
+      <!-- THIS IS THE POTENTIAL MATCHES PROFILE AREA  -->
+      <div class="profile-card">
+        <!-- THIS IS A FAKE IMAGE FILE FOR NOW-->
+        <img id="profile-image" src="user1.jpg"  alt="User Profile Picture">
+        <div id="profile-text">User's answer to prompt 1</div>
+        <!-- ONCLICK USES JAVA TO TELL IT TO MOVE TO THE NEXT SLIDE OF THE PROFILE - WHETHER IT'S PROMPT OR PIC... I HAVENT FIGURED OUT HOW TO PUT THE PROMPT OVER THE PIC WITH LIKE A PARTIAL OPACITY YET BUT I WILL -->
+        <button onclick="nextProfileDetail()">Next</button>
+      </div>
+    </div>
+   
+    <!-- THESE ARE NOT FULLY PROGRAMMED YET BECAUSE I NEED TO FIGURE OUT HOW TO LINK IT WITH JAVA TO THE PROFILE SWIPE AREA AND HAVE IT GENERATE A NEW PROFILE -->
+    <div class="swipe-buttons">
+      <button class="swipe-button dislike">QUIT</button>
+      <button class="swipe-button like">HIT</button>
+    </div>
+  </main>
+ 
+  <!-- BOTTOM AREA FOR THE BUTTONS TO LINK TO THE OTHER PAGES BUT I NEED TO LINK THEM AT OUR MEETING -->
+  <footer>
+    <button class="bottom-button" onclick="goToProfile()">Profile</button>
+    <button class="bottom-button" onclick="seeLikes()">Who Liked Me</button>
+  </footer>
+
+
+
+
+  <!-- THIS IS THE JAVA I'VE STARTED BUT IT NEEDS TO BE WORKED ON BECAUSE THIS IS MONSTLY STUFF FROM THE INTERNET I DONT FULLY UNDERSTAND.
+   SOMEHOW WE NEED TO TALK AND FIGURE OUT HOW TO TAKE THE PROMPTS STORED ON THE DATABASE, DISPLAY THEM WITH EITHER SQL OR HTML AND
+   THEN ASSIGN A VIABLE TO THE STORED ANSWER TO IT THIS JAVA MIGHT NOT EVEN WORK OR APPLY IN THE FINAL USE BUT ITS TEMPORARY FO RTHE MVP
+   -->
+  <script>
+    const profileImages = ["user1.jpg", "user2.jpg", "user3.jpg"];
+    const profilePrompts = [
+      "User's answer to prompt 1",
+      "User's answer to prompt 2",
+      "User's answer to prompt 3"
+    ];
+
+
+    let currentDetail = 0;
+
+
+    function nextProfileDetail() {
+      currentDetail = (currentDetail + 1) % profileImages.length;
+      document.getElementById("profile-image").src = profileImages[currentDetail];
+      document.getElementById("profile-text").textContent = profilePrompts[currentDetail];
+    }
+
+
+    function goToMessages() {
+      alert("Go to Messages");
+    }
+
+
+    function editFilters() {
+      alert("Edit Filters");
+    }
+
+
+    function goToProfile() {
+      alert("Go to Profile");
+    }
+
+
+    function seeLikes() {
+      alert("See Who Liked Me");
+    }
+  </script>
+</body>
+</html>
+
+
+<!-- BELOW IS OLD CODE I WAS USING BEFORE THAT I MIGHT REFER TO LAYER BUT JUST IGNORE IT FOR NOW-->
+
+
+<!--
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Filtr</title>
+<h1>Filtr</h1>
+    <link rel=“stylesheet” type=“text/css” href=“styles.css”>
+  </head>
+
+
+  <body>
+    <header class="header">
+        <button class="side-button left">
+            Left Button
+        </button>
+        <h1 class="title">
+            Filtr
+        </h1>
+        <button class="side-button right">
+        Right Button
+        </button>
+    </header>
+
+
+    <main class="I'll add pictures here later">
+    </main>
+
+
+  <footer class="footer">
+    <button class="bottom-buttom">
+        flirt
+    </button>
+    <button class="bottom-buttom">
+        Find
+    </button>
+    <button class="bottom-buttom">
+    profile
+  </button>
+
+
+  </footer>
+</body>
+</html>
+-->
+
 </head>
 
 <body>
