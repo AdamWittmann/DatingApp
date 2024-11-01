@@ -4,10 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="../static/css/settings.css">
+    <script src="../static/js/settings.js"></script>
+    <title>Settings</title>
 </head>
 
 <body>
+    <header>
+        <h1>Settings</h1>
+    </header>
+    <hr>
 
+    <div class="settings-container">
+        <ul>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+            <form method="POST">
+                <li><input type="submit" id="logout" value="Logout"></input></li>
+                <li><input type="submit" id="delacc" onclick="areYouSure()" value="Delete Account"></input></li>
+            </form>
+        </ul>
+    </div>
 </body>
-<html>
+
+</html>
