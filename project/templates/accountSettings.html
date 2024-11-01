@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/accountSettings.css">
+    <script src="../static/js/accountSettings.js"></script>
+    <title>Account Settings</title>
+</head>
+
+<body>
+    <header>
+        <h1>Account Settings</h1>
+    </header>
+    <hr>
+
+    <div class="settings-container">
+        <form method="POST">
+            <ul>
+                <li>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter new email" required>
+                </li>
+                <li>
+                    <label for="password">New Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter new password" required>
+                </li>
+                <li>
+                    <input type="submit" value="Save Changes">
+                </li>
+            </ul>
+        </form>
+    </div>
+</body>
