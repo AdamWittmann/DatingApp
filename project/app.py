@@ -25,6 +25,16 @@ def signup():
         return redirect(url_for('login'))
     return render_template("signup.html")
 
+@app.route('/settings')
+def settings():
+    if request.method == 'POST':
+        
+        with app.app_context():
+            db.session.delete((User))
+            db.session.commit()
+        return redirect(url_for('signup'))
+    return render_template("settings.html")
+
 @app.route('/filtr')
 def filtr():
     return render_template("filtr.html")
