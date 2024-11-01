@@ -8,6 +8,7 @@ from db.server import db
 from db.schema.user import User
 
 # create a webpage based off of the html in templates/index.html
+userEmail = None
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -26,10 +27,10 @@ def signup():
 def login():
     if request.method == 'POST':
 
-        email = request.form['Email']
+        userEmail = request.form['Email']
         password = request.form['Password']
 
-        user = db.session.query(User).filter_by(Email=email).first()
+        user = db.session.query(User).filter_by(Email=userEmail).first()
         if user and user.Password == password:
             return redirect(url_for('filtr'))
 
@@ -55,3 +56,17 @@ if __name__ == "__main__":
     # debug refreshes your application with your new changes every time you save
     app.run(debug=True)
 
+@app.route('/settings', methods=['GET', 'POST'])
+def settings():
+    if userEmail:
+        user = db.session.query(User).filter_by(Email=current_user_email).first
+
+        if user:
+            db.session.delete(user)
+            db.session.commit()
+            userEmail = None 
+            return redirect(url_for('signup'))
+        
+        else:
+            return "User not found.", 404
+    return "No user is currently logged in.", 401
