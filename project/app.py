@@ -25,6 +25,8 @@ def signup():
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
+    global userEmail
+
     if request.method == 'POST':
 
         userEmail = request.form['Email']
@@ -32,7 +34,7 @@ def login():
 
         user = db.session.query(User).filter_by(Email=userEmail).first()
         if user and user.Password == password:
-            return redirect(url_for('filtr'))
+            return redirect(url_for('settings'))
 
         else:
             error = 'Invalid username or password'
@@ -52,21 +54,30 @@ def messages():
 def profile():
     return render_template("profile.html")
 
+@app.route('/settings', methods=['GET', 'POST'])
+def settings():
+    global userEmail
+
+    if request.method == 'POST':
+        action = request.form.get('action')
+
+        if action == "Logout":
+            userEmail = None
+            return redirect(url_for('login'))
+
+        elif action == "Delete Account" and userEmail:
+            user = db.session.query(User).filter_by(Email=userEmail).first()
+
+            if user:
+                    db.session.delete(user)
+                    db.session.commit()
+                    userEmail = None 
+                    return redirect(url_for('signup'))
+            else:
+                return "User not found.", 404
+
+    return render_template("settings.html")
+
 if __name__ == "__main__":
     # debug refreshes your application with your new changes every time you save
     app.run(debug=True)
-
-@app.route('/settings', methods=['GET', 'POST'])
-def settings():
-    if userEmail:
-        user = db.session.query(User).filter_by(Email=current_user_email).first
-
-        if user:
-            db.session.delete(user)
-            db.session.commit()
-            userEmail = None 
-            return redirect(url_for('signup'))
-        
-        else:
-            return "User not found.", 404
-    return "No user is currently logged in.", 401
