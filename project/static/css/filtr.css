@@ -1,0 +1,235 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+ 
+  body, html {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+ 
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+  }
+ 
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: lavender;
+  }
+ 
+  .top-buttons {
+    display: flex;
+    gap: 10px;
+  }
+ 
+  .top-button {
+    background-color: #f0f0f0;
+    color: #555;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+ 
+  .swipe-area {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7f7f7;
+    padding: 20px;
+  }
+ 
+  .profile-card {
+    width: 90%;
+    max-width: 400px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+  }
+ 
+  .profile-card img {
+    width: 100%;
+    border-radius: 10px;
+  }
+ 
+  #profile-text {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+  }
+ 
+  .profile-card button {
+    margin-top: 15px;
+    padding: 10px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+ 
+  .swipe-buttons {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    background-color: #fff;
+    border-top: 1px solid #e0e0e0;
+  }
+ 
+  .swipe-button {
+    width: 45%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #fff;
+  }
+ 
+  .like {
+    background-color: #1a6d1c;
+  }
+ 
+  .dislike {
+    background-color: #751616;
+  }
+ 
+  footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #fff;
+    border-top: 1px solid #e0e0e0;
+  }
+ 
+  .bottom-button {
+    width: 45%;
+    padding: 10px;
+    background-color: #f0f0f0;
+    color: #555;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+ 
+/* THIS IS FOME THE INTERNET BECAUSE I WAS HAVING TROUBLE WITH FIGURING OUT IF THIS WAS A
+SIMPLE FLEX DISPLAY ISSUE AND THIS SOLVED MY PROBLEM WHEN I IMPLEMENTED IT SO I JUST LEFT IT*/
+
+
+  /* Media query for larger screens */
+  @media (min-width: 768px) {
+    .profile-card {
+      width: 60%;
+      max-width: 500px;
+    }
+    .swipe-button {
+      width: 40%;
+    }
+    .top-button, .bottom-button {
+      font-size: 16px;
+      padding: 12px 20px;
+    }
+  }
+ 
+
+
+
+
+/* OLD CODE PLEASE IGNORE ... ITS FOR ME TO REFER TO
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh ;
+    font-family: arial, sans;
+}
+.header {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+    background-color: lavender;
+    border-bottom: 2px solid slategray;
+}
+
+
+.side-button {
+    font-size: 16px;
+    position: absolute;
+    top: 50%
+    transform: translateY(-50%); /this is supposed to center it the way we want but my editor doesn't like it/
+    padding: 10px 20px;
+    font-family: arial, sans;
+    font-weight: 900;
+    font-size: 16px;
+    background-color: lightslategrey;
+    color: #ffffff;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    width: 150px;
+    text-align: center;
+}
+
+
+.side-button.left {
+    left: 20px;
+}
+
+
+.side-button.right{
+    right:20px;
+}
+
+
+.title{
+    flex: 1;
+    padding: 40px 20 px;
+    background-color: lavender;
+}
+
+
+.footer {
+    display: flex;
+    justify-content: center;
+
+
+}
+
+
+.bottom-button {
+    margin: 0 10px;
+    padding: 10px 20 px;
+    background-color: blueviolet;
+    color: white;
+    border-radius: 4px;
+    font-size:16px ;
+    transition: background-color 0.3 ease;
+}
+
+
+.bottom-button:hover{
+    background-color:rebeccapurple;
+}
+*/
