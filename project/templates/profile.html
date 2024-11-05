@@ -7,24 +7,41 @@
     <link rel="stylesheet" href="../static/css/profile.css">
 </head>
 <body>
-    <div class = "container">
-        <div class="imgButton">
-            <button>
-                <img src="../images/profilepic.png" alt="profilepic">
-
-            </button>
+    <div class="wrapper">
+        <!-- Settings Button -->
+        <div class="settings-button">
+            <a href="/profileSettings">
+                <button>Settings</button>
+            </a>
         </div>
 
-        <p>Filtr: <p id="accountMembershipStatus"></p></p> 
-        <div class="buttons">
-            <button>Buy Premium</button>
-            <button>Buy Filters</button>
-            <button>Day Pass</button>
-            <button>Boost</button>
+        <div class="container">
+            <div class="imgButton">
+                <button>
+                    <img src="../images/profilepic.png" alt="profilepic">
+                </button>
+            </div>
+
+            <p>Filtr: <span id="accountMembershipStatus"></span></p>
+            <div class="buttons">
+                <button>Buy Premium</button>
+                <button>Buy Filters</button>
+                <button>Day Pass</button>
+                <button>Boost</button>
+            </div>
         </div>
     </div>
-    
 
+    <footer>
+        <nav>
+            <ul class="footer-nav">
+                <li><a href="page1.html">Likes</a></li>
+                <li><a href="/filtr">Filtr</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/settings">Settings</a></li>
+            </ul>
+        </nav>
+    </footer>
 </body>
 <footer>
     <nav>
