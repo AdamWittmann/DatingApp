@@ -5,6 +5,16 @@
     font-family: Arial, sans-serif;
 }
 
+a {
+    color: #EFBCD5;
+    text-decoration: none;
+}
+
+a:hover {
+
+    color: #8661C1;
+}
+
 body {
     max-width: 400px;
     /* Keep this to limit the width */
