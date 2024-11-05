@@ -2,17 +2,12 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/Filtr.css">
-    <!DOCTYPE html>
-<html lang="en">
-<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Filtr - Home</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
+  <link rel="stylesheet" href="../static/css/filtr.css">
+  <!DOCTYPE html>
+  <html lang="en">
+
 <body>
   <!-- THIS IS LOGO -->
   <header>
@@ -22,7 +17,7 @@
       <button class="top-button" onclick="editFilters()">Filters</button>
     </div>
   </header>
- 
+
   <!-- MAIN  -->
   <main>
     <!-- THIS IS WHERE I NEED TO IMPLEMENT THE PICTURES OF FAKE PEOPLE BUT I DON'T KNOW HOW YET - FOR NOW JUST SWIPING/BUTTON  -->
@@ -30,20 +25,20 @@
       <!-- THIS IS THE POTENTIAL MATCHES PROFILE AREA  -->
       <div class="profile-card">
         <!-- THIS IS A FAKE IMAGE FILE FOR NOW-->
-        <img id="profile-image" src="user1.jpg"  alt="User Profile Picture">
+        <img id="profile-image" src="user1.jpg" alt="User Profile Picture">
         <div id="profile-text">User's answer to prompt 1</div>
         <!-- ONCLICK USES JAVA TO TELL IT TO MOVE TO THE NEXT SLIDE OF THE PROFILE - WHETHER IT'S PROMPT OR PIC... I HAVENT FIGURED OUT HOW TO PUT THE PROMPT OVER THE PIC WITH LIKE A PARTIAL OPACITY YET BUT I WILL -->
         <button onclick="nextProfileDetail()">Next</button>
       </div>
     </div>
-   
+
     <!-- THESE ARE NOT FULLY PROGRAMMED YET BECAUSE I NEED TO FIGURE OUT HOW TO LINK IT WITH JAVA TO THE PROFILE SWIPE AREA AND HAVE IT GENERATE A NEW PROFILE -->
     <div class="swipe-buttons">
       <button class="swipe-button dislike">QUIT</button>
       <button class="swipe-button like">HIT</button>
     </div>
   </main>
- 
+
   <!-- BOTTOM AREA FOR THE BUTTONS TO LINK TO THE OTHER PAGES BUT I NEED TO LINK THEM AT OUR MEETING -->
   <footer>
     <button class="bottom-button" onclick="goToProfile()">Profile</button>
@@ -98,14 +93,15 @@
 </body>
 <footer>
   <nav>
-      <ul class="footer-nav">
-          <li><a href="/underConstruction">Likes</a></li>
-          <li><a href="/filtr">Filtr</a></li>
-          <li><a href="/profile">Profile</a></li>
-          <li><a href="/settings">Settings</a></li>
-      </ul>
+    <ul class="footer-nav">
+      <li><a href="/underConstruction">Likes</a></li>
+      <li><a href="/filtr">Filtr</a></li>
+      <li><a href="/profile">Profile</a></li>
+      <li><a href="/settings">Settings</a></li>
+    </ul>
   </nav>
 </footer>
+
 </html>
 
 
