@@ -129,6 +129,39 @@
     cursor: pointer;
     font-size: 14px;
   }
+
+  .footer-nav {
+    list-style-type: none;
+    justify-content: center;
+    
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Centers the buttons horizontally */
+    gap: 15px; /* Space between buttons */
+    
+}
+
+.footer-nav li {
+    display: inline; /* Makes the list items horizontal */
+}
+
+.footer-nav a {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #EFBCD5; /* Button color */
+    color: black;
+    border-radius: 5px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    border-radius: 50px;
+    
+}
+
+.footer-nav a:hover {
+    background-color: #8661c1 /* Darker color on hover */
+}
  
 /* THIS IS FOME THE INTERNET BECAUSE I WAS HAVING TROUBLE WITH FIGURING OUT IF THIS WAS A
 SIMPLE FLEX DISPLAY ISSUE AND THIS SOLVED MY PROBLEM WHEN I IMPLEMENTED IT SO I JUST LEFT IT*/
