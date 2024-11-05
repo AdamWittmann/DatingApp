@@ -2,7 +2,7 @@ body{
     background-color:#4B5267;
     height: 100vh; 
     display: grid;
-     
+    font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     text-align: center;
 }
@@ -11,9 +11,9 @@ body{
    
     
 }
-.imgButton>button{
+/*.imgButton>button{
     
-}
+}*/
 
 
 .buttons {
@@ -51,7 +51,8 @@ body{
     padding: 10px 20px;
     text-decoration: none;
     background-color: #EFBCD5; /* Button color */
-    color: black;
+    color:#4B5267;
+    
     border-radius: 5px;
     text-align: center;
     font-family: Arial, sans-serif;
@@ -62,4 +63,10 @@ body{
 
 .footer-nav a:hover {
     background-color: #8661c1 /* Darker color on hover */
+}
+p#accountMembershipStatus {
+    font-size: 20px;
+    color: #BE97C6;
+    text-shadow: 2px 4px #2E294E;
+
 }
