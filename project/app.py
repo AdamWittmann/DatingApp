@@ -46,6 +46,10 @@ def login():
 def filtr():
     return render_template("filtr.html")
 
+@app.route('/underConstruction')
+def underConstruction():
+    return render_template("underConstruction.html")
+
 @app.route('/messages')
 def messages():
     return render_template("messages.html")
