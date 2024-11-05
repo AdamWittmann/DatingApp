@@ -18,7 +18,12 @@ body p {
 }
 
 .imgButton {
-    padding-top: 10px;
+    padding-top: 30px;
+
+}
+
+.imgButton button {
+    padding: 40px;
 }
 
 .wrapper {
@@ -80,9 +85,9 @@ body p {
 }
 
 body hr {
-    margin-top: 20px;
-    width: 90%;
-    background-color: #2E294E;
+    color: #2E294E;
+    height: 1px;
+    width: 300px;
 }
 
 .footer-nav {
