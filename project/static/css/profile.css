@@ -1,10 +1,20 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
 body {
     background-color: #4B5267;
     height: 100vh;
     display: grid;
-
+    justify-items: center;
     margin: 0;
     text-align: center;
+}
+
+body p {
+    color: white;
+    font-size: 20px;
 }
 
 .imgButton {
@@ -12,8 +22,9 @@ body {
 }
 
 .wrapper {
+
     position: relative;
-    width: 100%;
+    max-width: 350px;
     height: 100%;
 }
 
@@ -52,10 +63,26 @@ body {
 }
 
 .buttons>button {
-    border-radius: 50px;
-    width: 60%;
+    width: 150px;
+    padding: 12px;
+    color: white;
+    background-color: #BE97C6;
+    /* Match link color with footer */
+    border: 2px solid #EFBCD5;
+    /* Light border for links */
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
 
+.buttons>button:hover {
+    background-color: #8661c1;
+}
 
+body hr {
+    margin-top: 20px;
+    width: 90%;
+    background-color: #2E294E;
 }
 
 .footer-nav {
