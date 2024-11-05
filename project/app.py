@@ -54,6 +54,15 @@ def messages():
 def profile():
     return render_template("profile.html")
 
+@app.route('/profileSettings', methods=['GET', 'POST'])
+def profileSettings():
+    query  = insert(User).values(request.form)
+        
+    with app.app_context():
+        db.session.execute((query))
+        db.session.commit()
+    return render_template("profileSettings.html")
+
 @app.route('/accountSettings', methods=['GET','POST'])
 def accountSettings():
     if request.method == 'POST':
