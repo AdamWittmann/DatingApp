@@ -61,6 +61,7 @@ def profileSettings():
     with app.app_context():
         db.session.execute((query))
         db.session.commit()
+        return redirect(url_for('profile'))
     return render_template("profileSettings.html")
 
 @app.route('/accountSettings', methods=['GET','POST'])
