@@ -34,6 +34,19 @@ header {
   /* Dark shadow for depth */
 }
 
+header button {
+  color: white;
+  padding: 10px;
+  background-color: #EFBCD5;
+  border-radius: 20px;
+  border-color: #EFBCD5;
+}
+
+header button:hover {
+  background-color: #8661C1;
+  transition: background-color 0.3s ease;
+}
+
 main {
   width: 100%;
   max-width: 350px;
