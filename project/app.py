@@ -35,7 +35,7 @@ def login():
 
         user = db.session.query(User).filter_by(Email=userEmail).first()
         if user and user.Password == password:
-            return redirect(url_for('settings'))
+            return redirect(url_for('filtr'))
 
         else:
             error = 'Invalid username or password'
