@@ -12,10 +12,10 @@
     <div class="form-container">
         <a href="/profile">Back</a>
         <h1>Complete Your Profile</h1>
-        <form action="/submitProfileInfo" method="POST">
+        <form method="POST">
             <!-- Gender Selection -->
             <label for="gender">Gender</label>
-            <select id="gender" name="gender" required>
+            <select id="gender" name="Gender" required>
                 <option value="" disabled selected>Select your gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -25,19 +25,19 @@
 
             <!-- Age Input -->
             <label for="age">Age</label>
-            <input type="number" id="age" name="age" min="18" max="100" required placeholder="Enter your age">
+            <input type="number" id="age" name="Age" min="18" max="100" required placeholder="Enter your age">
 
             <!-- Religion Input -->
             <label for="religion">Religion</label>
-            <input type="text" id="religion" name="religion" placeholder="Enter your religion">
+            <input type="text" id="religion" name="Religion" placeholder="Enter your religion">
 
             <!-- Bio Input -->
             <label for="bio">Bio</label>
-            <textarea id="bio" name="bio" rows="4" maxlength="500" placeholder="Tell us about yourself..."></textarea>
+            <textarea id="bio" name="Bio" rows="4" maxlength="500" placeholder="Tell us about yourself..."></textarea>
 
             <!-- Gender Preference Selection -->
             <label for="genderPreference">Gender Preference</label>
-            <select id="genderPreference" name="genderPreference" required>
+            <select id="genderPreference" name="GenderPreference" required>
                 <option value="" disabled selected>Select your preference</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>

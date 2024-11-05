@@ -6,6 +6,7 @@ from db.server import app
 from db.server import db
 
 from db.schema.user import User
+from db.schema.profile import Profile
 
 # create a webpage based off of the html in templates/index.html
 userEmail = None
@@ -60,12 +61,13 @@ def profile():
 
 @app.route('/profileSettings', methods=['GET', 'POST'])
 def profileSettings():
-    query  = insert(User).values(request.form)
-        
-    with app.app_context():
-        db.session.execute((query))
-        db.session.commit()
-        return redirect(url_for('profile'))
+    if request.method == 'POST':
+        query  = insert(Profile).values(request.form)
+            
+        with app.app_context():
+            db.session.execute((query))
+            db.session.commit()
+            return redirect(url_for('profile'))
     return render_template("profileSettings.html")
 
 @app.route('/accountSettings', methods=['GET','POST'])
