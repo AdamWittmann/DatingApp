@@ -54,6 +54,23 @@ def messages():
 def profile():
     return render_template("profile.html")
 
+@app.route('/accountSettings', methods=['GET','POST'])
+def accountSettings():
+    if request.method == 'POST':
+        email = request.form['email']
+        currPassword = request.form['currPassword']
+        newPassword = request.form['newPassword']
+
+        user = db.session.query(User).filter_by(Email=userEmail).first()
+        if user and (user.Password == currPassword):
+            user.Password = newPassword
+            db.session.commit()
+            return redirect(url_for('login'))
+        else:
+            return "User Not Found", 404
+
+    return render_template("accountSettings.html")
+
 @app.route('/settings', methods=['GET', 'POST'])
 def settings():
     global userEmail
