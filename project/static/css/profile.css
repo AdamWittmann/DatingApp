@@ -126,3 +126,7 @@ body hr {
     background-color: #8661c1
         /* Darker color on hover */
 }
+
+#profilePic{
+    max-width: 150px;
+}

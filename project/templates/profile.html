@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/profile.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
 </head>
 
 <body>
@@ -17,7 +17,7 @@
         <div class="container">
             <div class="imgButton">
                 <button>
-                    <img src="../images/profilepic.png" alt="profilepic">
+                    <img id="profilePic" src="{{ user_picture }}" alt="User Picture">
                 </button>
             </div>
 
