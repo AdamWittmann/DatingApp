@@ -6,8 +6,10 @@
 }
 
 a {
-    color: #EFBCD5;
+    color: #2E294E;
     text-decoration: none;
+    text-align: left;
+    display: block;
 }
 
 a:hover {
@@ -27,7 +29,7 @@ body {
     margin: auto;
     min-height: 100vh;
     /* Full height of the viewport */
-    background-color: #4B5267;
+    
     color: white;
 }
 
@@ -36,26 +38,20 @@ hr {
 }
 
 header {
-    font-size: 40px;
-    font-weight: bold;
-    text-align: center;
-    color: #BE97C6;
-    margin-top: 20px;
-    margin-bottom: 40px;
-    text-shadow: 1px 3px #2E294E;
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 20px;
 }
 
+
 .settings-container {
-    width: 100%;
-    /* Allow the container to take full width */
-    max-width: 350px;
-    /* Set max width */
-    padding: 25px;
-    background-color: #333A50;
-    border-radius: 15px;
-    margin: auto;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    max-width: 400px;
+    background-color: #4B5267;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
     /* Optional shadow for better visibility */
 }
 
@@ -77,7 +73,7 @@ header {
     width: 100%;
     padding: 10px;
     border-radius: 20px;
-    border: 2px solid #2E294E;
+    border: 1px solid grey;
     font-size: 16px;
 }
 

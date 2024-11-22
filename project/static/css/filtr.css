@@ -5,17 +5,32 @@
   font-family: Arial, sans-serif;
 }
 
+
 body {
   max-width: 400px;
+  /* Keep this to limit the width */
   display: grid;
+  /* Use flexbox for centering */
   justify-content: center;
+  /* Center horizontally */
   align-items: center;
+  /* Center vertically */
   margin: auto;
   min-height: 100vh;
-  background-color: #4B5267;
-  /* Dark background color */
+  /* Full height of the viewport */
+  
   color: white;
-  /* White text for better contrast */
+}
+/*gives illusion of phone diplay**/
+.Filtr {
+  text-align: center;
+  padding: 40px;
+  max-width: 400px;
+  background-color: #4B5267;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  /* Optional shadow for better visibility */
 }
 
 hr {
@@ -39,7 +54,9 @@ header button {
   padding: 10px;
   background-color: #EFBCD5;
   border-radius: 20px;
-  border-color: #EFBCD5;
+  border-color:  #EFBCD5;
+  
+  
 }
 
 header button:hover {
@@ -109,7 +126,7 @@ main {
   /* Make buttons occupy space evenly */
   font-size: 16px;
   font-weight: bold;
-  border: 2px solid #EFBCD5;
+  border: 1.5px solid;
   /* Light border for swipe buttons */
   border-radius: 20px;
   color: white;
