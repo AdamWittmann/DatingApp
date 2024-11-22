@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physical Features</title>
+    <link rel="stylesheet" href="../static/css/physicalFeatures.css"> <!-- Add your stylesheet if needed -->
+</head>
+
+<body>
+    <div class="container">
+        <h1>Enter Your Physical Features</h1>
+        <form id="physicalFeaturesForm" method="POST">
+            <div>
+                <label for="hairColor">Hair Color:</label>
+                <input type="text" id="hairColor" name="HairColor" placeholder="Enter your hair color">
+            </div>
+            <div>
+                <label for="height">Height (in cm):</label>
+                <input type="number" id="height" name="Height" placeholder="Enter your height">
+            </div>
+            <div>
+                <label for="weight">Weight (in kg):</label>
+                <input type="number" id="weight" name="Weight" placeholder="Enter your weight">
+            </div>
+            <div>
+                <label for="eyeColor">Eye Color:</label>
+                <input type="text" id="eyeColor" name="EyeColor" placeholder="Enter your eye color">
+            </div>
+            <div>
+                <input class="submit-fomr" type="submit">Save/Submit</button>
+                <button type="button" onclick="finish()">Finish</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+
+        // Function to handle the finish action
+        function finish() {
+            // Redirect to the profile page
+            window.location.href = '/profile';
+        }
+    </script>
+</body>
+
+</html>

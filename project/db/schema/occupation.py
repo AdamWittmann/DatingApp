@@ -4,7 +4,7 @@ from db.server import db
 class Occupation(db.Model):
     __tablename__ = 'Occupation'
     OccupationID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    ProfileID = db.Column(db.Integer)
+    ProfileID = db.Column(db.Integer, db.ForeignKey('profile.ProfileID'))
     Job = db.Column(db.String(25))
     Salary = db.Column(db.Integer)
 

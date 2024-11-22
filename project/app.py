@@ -1,5 +1,7 @@
 """app.py: render and route to webpages"""
-from flask import request, render_template, redirect, url_for, session
+
+from flask import request, render_template, redirect, url_for, session, jsonify
+
 from sqlalchemy import insert, text, select
 
 from db.server import app
@@ -7,6 +9,10 @@ from db.server import db
 
 from db.schema.user import User
 from db.schema.profile import Profile
+from db.schema.education import Education
+from db.schema.profile import Profile
+from db.schema.occupation import Occupation
+from db.schema.physicalFeatures import PhysicalFeatures
 
 app.secret_key = "your_unique_secret_key"
 # create a webpage based off of the html in templates/index.html
@@ -136,6 +142,72 @@ def settings():
 
     return render_template("settings.html")
 
+#education form submit query:
+@app.route('/enterEducation', methods=['POST','GET'])
+def enterEducation():
+    if request.method == 'GET':
+        # Render the education form for GET requests
+        return render_template("enterEducation.html")
+    if request.method =='POST':
+        query  = insert(Education).values(request.form)
+        with app.app_context():
+            db.session.execute((query))
+            db.session.commit()
+        return render_template("enterEducation.html")
+
+def get_user_id_by_email():
+    user_email = session.get('userEmail')  # Retrieve from session
+    if not user_email:
+        return None
+
+    user = User.query.filter_by(Email=user_email).first()
+    if user:
+        return user.UserID  # Assuming 'UserID' is the primary key
+    return None
+
+def get_profile_id_by_user_email():
+    # Step 1: Get UserID from the User schema
+    user_id = get_user_id_by_email()
+    if not user_id:
+        return None
+
+    # Step 2: Query the Profile schema using UserID
+    profile = Profile.query.filter_by(UserID=user_id).first()
+    if profile:
+        return profile.ProfileID
+    return None
+
+@app.route('/check-profile', methods=['GET'])
+def check_profile():
+    profile_id = get_profile_id_by_user_email()  # Use the updated helper
+    if not profile_id:
+        return jsonify({'profileComplete': False, 'error': 'Profile not found'}), 404
+
+    complete = is_schema_complete(profile_id)
+    return jsonify({'profileComplete': complete})
+
+@app.route('/enterOccupation', methods=['GET', 'POST'])
+def enterOccupation():
+    # if request.method == 'GET':
+    if request.method == 'POST':
+        query = insert(Occupation).values(request.form)
+        with app.app_context():
+            db.session.execute((query))
+            db.session.commit()
+    
+    return render_template("enterOccupation.html")
+@app.route('/physicalFeatures', methods=['GET','POST'])
+def physicalFeatures():
+    if request.method == 'POST':
+        query = insert(PhysicalFeatures).values(request.form)
+        with app.app_context():
+            db.session.execute((query))
+            db.session.commit()
+    return render_template("physicalFeatures.html")
+
+    
+
+    return jsonify({'message': 'Physical features saved successfully!'})
 if __name__ == "__main__":
     # debug refreshes your application with your new changes every time you save
     app.run(debug=True)
