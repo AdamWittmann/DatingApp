@@ -4,23 +4,36 @@
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
+.page{
+    text-align: center;
+    padding: 40px;
+    max-width: 400px;
+    background-color: #4B5267;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    /* Optional shadow for better visibility */
+  
+}
 
 header {
-    font-size: 60px;
+    font-size: 40px;
     font-weight: bold;
     text-align: center;
-    margin-top: 20px;
-    margin-bottom: 60px;
     color: #BE97C6;
-    text-shadow: 2px 4px #2E294E;
+    /* Light pinkish color */
+    margin-top: 20px;
+    margin-bottom: 40px;
+    text-shadow: 1px 3px #2E294E;
+    /* Dark shadow for depth */
 }
 
 body {
-    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #4B5267;
-
+    min-height: 100vh;
 }
 
 body div h1 {
@@ -59,14 +72,15 @@ body div h1 {
 
 .login input {
     padding: 10px;
-    border: 3px solid #2E294E;
+    border: 1.5px solid grey ;
+    
 }
 
 .login button {
     padding: 10px;
-    background-color: #EFBCD5;
     font-weight: bold;
     color: #2E294E;
+
 
 }
 
