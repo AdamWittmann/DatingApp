@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Education</title>
+    <link rel="stylesheet" href="../static/css/educationOccupation.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Education</h1>
+
+        <form id="educationForm" method="POST">
+            <div class="form-group">
+                <label for="degree">Degree</label>
+                <input type="text" id="degree" name="Degree" placeholder="Enter degree">
+            </div>
+
+            <div class="form-group">
+                <label for="graduationYear">Graduation Year</label>
+                <input type="number" id="graduationYear" name="GraduationYear" placeholder="Enter graduation year">
+            </div>
+
+            <div class="form-group">
+                <label for="major">Major</label>
+                <input type="text" id="major" name="Major" placeholder="Enter major">
+            </div>
+
+            <div class="form-group">
+                <label for="school">School</label>
+                <input type="text" id="school" name="School" placeholder="Enter school name">
+            </div>
+
+            <div class="button-group">
+                <input type="submit">Save/Submit</button>
+                <button type="button" onclick="goToNext()">Next</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        function goToNext() {
+            // Redirect to the next form or section
+            window.location.href = '/enterOccupation';
+        }
+    </script>
+</body>
+
+</html>

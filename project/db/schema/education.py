@@ -4,7 +4,7 @@ from db.server import db
 class Education(db.Model):
     __tablename__ = 'Education'
     EducationID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    ProfileID = db.Column(db.Integer)
+    ProfileID = db.Column(db.Integer,db.ForeignKey('profile.profileID'))
     Degree = db.Column(db.String(30))
     Major = db.Column(db.String(30))
     GraduationYear = db.Column(db.String(4))

@@ -4,7 +4,7 @@ from db.server import db
 class Profile(db.Model):
     __tablename__ = 'Profile'
     ProfileID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    UserID = db.Column(db.Integer)
+    UserID = db.Column(db.Integer, db.ForeignKey('User.UserID'))
     Gender = db.Column(db.String(255))
     Age = db.Column(db.Integer)
     Religion = db.Column(db.String(255))

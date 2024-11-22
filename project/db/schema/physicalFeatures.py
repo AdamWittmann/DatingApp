@@ -4,7 +4,7 @@ from db.server import db
 class PhysicalFeatures(db.Model):
     __tablename__ = 'PhysicalFeatures'
     FeatureID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    ProfileID = db.Column(db.Integer)
+    ProfileID = db.Column(db.Integer,db.ForeignKey('profile.ProfileID'))    
     HairColor = db.Column(db.String(20))
     Height = db.Column(db.Integer)
     Weight = db.Column(db.Integer)

@@ -90,6 +90,25 @@
       alert("See Who Liked Me");
     }
   </script>
+  <!-- <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Fetch profile completeness status from the backend
+      fetch('/check-profile', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (!data.profileComplete) {
+            alert('Please complete your profile!');
+            window.location.href = '/enterEducation'; // Redirect to the first form
+          }
+        })
+        .catch(error => {
+          console.error('Error checking profile completeness:', error);
+        });
+    });
+  </script> -->
 </body>
 <footer>
   <nav>
