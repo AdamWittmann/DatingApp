@@ -5,7 +5,7 @@
     font-family: Arial, sans-serif;
 }
 
-header {
+/*header {
     font-size: 60px;
     font-weight: bold;
     text-align: center;
@@ -13,7 +13,7 @@ header {
     margin-bottom: 15px;
     color: #BE97C6;
     text-shadow: 2px 4px #2E294E;
-}
+}*/
 
 body {
     display: grid;
@@ -23,7 +23,7 @@ body {
     /* Full height to center vertically */
     color: white;
     justify-content: center;
-    background-color: #4B5267;
+    background-color: white;
 
 }
 
@@ -31,15 +31,21 @@ body form div h1 {
     text-align: center;
     font-size: 28px;
     margin-bottom: 20px;
-    color: white;
+    color: #BE97C6;
     font-weight: bold;
+    text-shadow: 2px 4px #2E294E;
 }
 
 .container {
-    padding: 16px;
+    max-width: 350px;
+    padding: 25px;
+    background-color: #333A50;
+    border-radius: 15px;
+    text-align: center;
+    /*padding: 16px;
     background-color: #4B5267;
     max-width: 400px;
-    text-align: center;
+    text-align: center;*/
 }
 
 .text-box {
