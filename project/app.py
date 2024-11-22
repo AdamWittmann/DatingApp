@@ -14,26 +14,38 @@ USER_PICTURES = {
     "joe@foyc3.com": "static/images/Brock.png",
     "caden@foyc3.com": "static/images/Caden.png",
     "james@foyc3.com": "static/images/James.png",
-    "chlorine@foyc3.com": "static/images/user1.jpg",
-    "alfredo@foyc3.com": "static/images/user2.jpg",
-    "camila@tables.com": "static/images/user3.jpg",
-    "valeria@tables.com": "static/images/user4.jpg",
-    "maria@tables.com": "static/images/user5.jpg",
-    "mia@tables.com": "static/images/user6.jpg",
-    "nicole@tables.com": "static/images/user7.jpg",
+    "chlorine@foyc3.com": "static/images/Chlorine.png",
+    "alfredo@foyc3.com": "static/images/Alfredo.png",
+    "camila@tables.com": "static/images/Camila.png",
+    "valeria@tables.com": "static/images/Valeria.png",
+    "maria@tables.com": "static/images/Maria.png",
+    "mia@tables.com": "static/images/Mia.png",
+    "nicole@tables.com": "static/images/Nicole.png",
 }
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
+        email = request.form['Email']  # Retrieve the email from the form input
 
-        query  = insert(User).values(request.form)
-        
+        # Check if the email already exists in the database
         with app.app_context():
-            db.session.execute((query))
+            existing_user = db.session.query(User).filter_by(Email=email).first()
+
+            if existing_user:
+                # Email already exists; render the signup page with an error message
+                error = "This email is already associated with an account."
+                return render_template("signup.html", alert_message=error)
+
+            # Email is not in the database; proceed to create the account
+            query = insert(User).values(request.form)
+            db.session.execute(query)
             db.session.commit()
 
+        # Redirect to the login page after successful signup
         return redirect(url_for('login'))
+
+    # Render the signup page if the request method is GET
     return render_template("signup.html")
 
 @app.route('/', methods=['GET', 'POST'])
