@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../static/css/filtr.css">
+  
+  <!--Scripting for liking Users-->
   <script>
     async function handleLike(button) {
     const likedUserID = button.getAttribute('data-user-id');
@@ -46,6 +48,8 @@
     </header>
   
     <main>
+      
+      <!--Swipe area users displayed here-->
       <div class="swipe-area">
         <div class="profile-card">
           <img id="profile-image" src="{{ profile.picture_url }}" alt="User Profile Picture">
@@ -59,7 +63,8 @@
       </div>
     </main>
   </body>
-  
+
+  <!--Footer Nav bar -->
 <footer>
   <nav>
     <ul class="footer-nav">
