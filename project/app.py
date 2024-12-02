@@ -17,7 +17,7 @@ from db.schema.physicalFeatures import PhysicalFeatures
 app.secret_key = "your_unique_secret_key"
 # create a webpage based off of the html in templates/index.html
 USER_PICTURES = {
-    "joe@foyc3.com": "static/images/Brock.png",
+    "joe@foyc3.com": "static/images/Brock.png", 
     "caden@foyc3.com": "static/images/Caden.png",
     "james@foyc3.com": "static/images/James.png",
     "chlorine@foyc3.com": "static/images/Chlorine.png",
@@ -75,7 +75,64 @@ def login():
 
 @app.route('/filtr')
 def filtr():
-    return render_template("filtr.html")
+    # Fetch profiles of the opposite gender
+    user_email = session.get('user_email')
+    if not user_email:
+        return redirect(url_for('login'))
+
+    current_user = db.session.query(User).filter_by(Email=user_email).first()
+    if not current_user:
+        return redirect(url_for('login'))
+
+    current_profile = db.session.query(Profile).filter_by(UserID=current_user.UserID).first()
+    if not current_profile:
+        return redirect(url_for('profileSettings'))
+
+    # Find profiles matching the user's gender preference
+    opposite_profiles = db.session.query(Profile, User).join(User, Profile.UserID == User.UserID).filter(Profile.Gender == current_profile.GenderPreference, Profile.GenderPreference == current_profile.Gender).all()
+
+    if not opposite_profiles:
+        return render_template("filtr.html", profile=None)
+
+    # Select the first profile from the result (for simplicity)
+    selected_profile = opposite_profiles[0]
+    profile_data = {
+        "user_id": selected_profile.User.UserID,
+        "picture_url": USER_PICTURES.get(selected_profile.User.Email, "static/images/default.jpg"),
+        "prompt": f"{selected_profile.User.FirstName}, {selected_profile.User.LastName}"
+    }
+
+    return render_template("filtr.html", profile=profile_data)
+
+@app.route('/like', methods=['POST'])
+def like():
+    data = request.json
+    liked_user_id = data.get('likedUserID')
+
+    user_email = session.get('user_email')
+    current_user = db.session.query(User).filter_by(Email=user_email).first()
+    if not current_user:
+        return jsonify({"message": "User not logged in."}), 403
+
+    # Check if the liked user liked back
+    mutual_like = db.session.query(Likes).filter_by(UserID=liked_user_id, LikedUserID=current_user.UserID).first()
+
+    if mutual_like:
+        # Create a match if mutual
+        match = Matches(UserID1=current_user.UserID, UserID2=liked_user_id, MatchDate=datetime.now().strftime('%Y%m%d'))
+        db.session.add(match)
+        db.session.commit()
+
+        # Fetch phone numbers to display
+        liked_user = db.session.query(User).filter_by(UserID=liked_user_id).first()
+        return jsonify({"message": "It's a match!", "match": True, "phoneNumbers": [current_user.PhoneNumber, liked_user.PhoneNumber]})
+
+    # If no mutual like, just add the like entry
+    new_like = Likes(UserID=current_user.UserID, LikedUserID=liked_user_id, DateLiked=datetime.now().strftime('%Y%m%d'))
+    db.session.add(new_like)
+    db.session.commit()
+
+    return jsonify({"message": "User liked successfully.", "match": False})
 
 @app.route('/underConstruction')
 def underConstruction():
@@ -91,7 +148,7 @@ def profile():
     return render_template("profile.html", user_picture=user_picture)
 
 @app.route('/profileSettings', methods=['GET', 'POST'])
-def profileSettings():
+def profileSettings(): 
     if request.method == 'POST':
         query  = insert(Profile).values(request.form)
             
@@ -99,6 +156,7 @@ def profileSettings():
             db.session.execute((query))
             db.session.commit()
             return redirect(url_for('profile'))
+
     return render_template("profileSettings.html")
 
 @app.route('/accountSettings', methods=['GET','POST'])
