@@ -17,6 +17,7 @@ class User(db.Model):
     SubStart = db.Column(db.String(6))
     SubEnd = db.Column(db.String(6))
 
+    profile = db.relationship('Profile', backref='profile-user', lazy=True)
 
     def __init__(self, FirstName, LastName, Email, PhoneNumber, Password, CreditCardNum, ExpirationDate, SecurityCode, BillingAddress, IsSub, SubStart, SubEnd ):
         # remove pass and then initialize attributes

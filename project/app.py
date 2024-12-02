@@ -147,16 +147,43 @@ def profile():
     user_picture = session.get('user_picture', "static/images/default.jpg")
     return render_template("profile.html", user_picture=user_picture)
 
+# @app.route('/profileSettings', methods=['GET', 'POST'])
+# def profileSettings():
+#     if request.method == 'POST':
+#         query  = insert(Profile).values(request.form)
+    
+#         with app.app_context():
+#             db.session.execute((query))
+#             db.session.commit()
+#             return redirect(url_for('profile'))
+#     return render_template("profileSettings.html")
 @app.route('/profileSettings', methods=['GET', 'POST'])
 def profileSettings(): 
     if request.method == 'POST':
-        query  = insert(Profile).values(request.form)
-            
+        # Retrieve the current user's email from the session
+        user_email = session.get('user_email')
+        if not user_email:
+            return "User not logged in", 401  # Return unauthorized if no user is logged in
+        
+        # Retrieve the UserID from the User table
+        user = db.session.query(User).filter_by(Email=user_email).first()
+        if not user:
+            return "User not found", 404  # Return not found if the user does not exist
+        
+        # Extract the UserID
+        user_id = user.UserID
+        
+        # Include the UserID in the form data for the Profile table
+        profile_data = request.form.to_dict()
+        profile_data['UserID'] = user_id
+        
+        # Insert the profile data into the Profile table
+        query = insert(Profile).values(profile_data)
         with app.app_context():
-            db.session.execute((query))
+            db.session.execute(query)
             db.session.commit()
-            return redirect(url_for('profile'))
-
+        return redirect(url_for('profile'))
+    
     return render_template("profileSettings.html")
 
 @app.route('/accountSettings', methods=['GET','POST'])
@@ -228,21 +255,33 @@ def get_profile_id_by_user_email():
     user_id = get_user_id_by_email()
     if not user_id:
         return None
-
     # Step 2: Query the Profile schema using UserID
     profile = Profile.query.filter_by(UserID=user_id).first()
     if profile:
         return profile.ProfileID
     return None
+def is_profile_complete():
+    # Step 1: Get the ProfileID using the email
+    profile_id = get_profile_id_by_user_email()
+    if not profile_id:
+        return False
 
+    # Step 2: Fetch the Profile and check required fields
+    profile = Profile.query.filter_by(ProfileID=profile_id).first()
+    if not profile:
+        return False
+
+    # Step 3: Check for required fields
+    required_fields = [profile.Gender, profile.Age, profile.Religion, profile.Bio, profile.GenderPreference]
+    return all(required_fields)  # Returns True if all fields are filled, False otherwise
 @app.route('/check-profile', methods=['GET'])
 def check_profile():
-    profile_id = get_profile_id_by_user_email()  # Use the updated helper
-    if not profile_id:
-        return jsonify({'profileComplete': False, 'error': 'Profile not found'}), 404
-
-    complete = is_schema_complete(profile_id)
-    return jsonify({'profileComplete': complete})
+    try:
+        complete = is_profile_complete()
+        return jsonify({'profileComplete': complete})
+    except Exception as e:
+        print(f"Error checking profile: {e}")
+        return jsonify({'profileComplete': False, 'error': 'Server error'}), 500
 
 @app.route('/enterOccupation', methods=['GET', 'POST'])
 def enterOccupation():

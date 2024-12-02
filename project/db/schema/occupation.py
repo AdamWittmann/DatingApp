@@ -4,10 +4,11 @@ from db.server import db
 class Occupation(db.Model):
     __tablename__ = 'Occupation'
     OccupationID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    ProfileID = db.Column(db.Integer, db.ForeignKey('profile.ProfileID'))
+    ProfileID = db.Column(db.Integer, db.ForeignKey('Profile.ProfileID'))
     Job = db.Column(db.String(25))
     Salary = db.Column(db.Integer)
 
+    profile = db.relationship('Profile', backref='occupations', lazy='select')
     def __init__(self, OccupationID, ProfileID, Job, Salary ):
         # remove pass and then initialize attributes
         self.OccupationID = OccupationID
