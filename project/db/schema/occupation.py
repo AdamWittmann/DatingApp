@@ -9,6 +9,7 @@ class Occupation(db.Model):
     Salary = db.Column(db.Integer)
 
     profile = db.relationship('Profile', backref='occupations', lazy='select')
+    
     def __init__(self, OccupationID, ProfileID, Job, Salary ):
         # remove pass and then initialize attributes
         self.OccupationID = OccupationID

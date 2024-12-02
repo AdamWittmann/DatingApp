@@ -29,7 +29,7 @@ body {
     margin: auto;
     min-height: 100vh;
     /* Full height of the viewport */
-    
+
     color: white;
 }
 
@@ -45,6 +45,7 @@ header {
 
 
 .settings-container {
+    height: 100%;
     text-align: center;
     padding: 40px;
     max-width: 400px;
