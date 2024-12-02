@@ -18,9 +18,10 @@ body {
   margin: auto;
   min-height: 100vh;
   /* Full height of the viewport */
-  
+
   color: white;
 }
+
 /*gives illusion of phone diplay**/
 .Filtr {
   text-align: center;
@@ -30,6 +31,7 @@ body {
   color: white;
   border-radius: 10px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  min-height: 100vh;
   /* Optional shadow for better visibility */
 }
 
@@ -54,9 +56,9 @@ header button {
   padding: 10px;
   background-color: #EFBCD5;
   border-radius: 20px;
-  border-color:  #EFBCD5;
-  
-  
+  border-color: #EFBCD5;
+
+
 }
 
 header button:hover {
