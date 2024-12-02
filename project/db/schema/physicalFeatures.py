@@ -4,12 +4,13 @@ from db.server import db
 class PhysicalFeatures(db.Model):
     __tablename__ = 'PhysicalFeatures'
     FeatureID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    ProfileID = db.Column(db.Integer,db.ForeignKey('profile.ProfileID'))    
+    ProfileID = db.Column(db.Integer,db.ForeignKey('Profile.ProfileID'))    
     HairColor = db.Column(db.String(20))
     Height = db.Column(db.Integer)
     Weight = db.Column(db.Integer)
     EyeColor = db.Column(db.String(20))
 
+    profile = db.relationship('Profile', backref='physicalfeatures', lazy='select')
 
     def __init__(self, FeatureID, ProfileID, HairColor, Height, Weight, EyeColor ):
         # remove pass and then initialize attributes

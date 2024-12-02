@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    <link rel="stylesheet" href="../static/css/profile.css">
 </head>
 
 <body>
@@ -17,7 +17,7 @@
         <div class="container">
             <div class="imgButton">
                 <button>
-                    <img id="profilePic" src="{{ user_picture }}" alt="User Picture">
+                    <img src="../images/profilepic.png" alt="profilepic">
                 </button>
             </div>
 
@@ -41,13 +41,14 @@
             </ul>
         </nav>
     </footer>
-    <script>
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Fetch profile completeness status from the backend
             fetch('/check-profile', {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' }
             })
+            console.log(user_id)
                 .then(response => response.json())
                 .then(data => {
                     if (!data.profileComplete) {
@@ -59,7 +60,7 @@
                     console.error('Error checking profile completeness:', error);
                 });
         });
-    </script>
+    </script> -->
 </body>
 
 </html>

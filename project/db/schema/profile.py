@@ -14,6 +14,7 @@ class Profile(db.Model):
     Created = db.Column(db.String(8))
     Updated = db.Column(db.String(8))
 
+    user = db.relationship('User', backref='profiles', lazy=True)
 
     def __init__(self, ProfileID, UserID, Gender, Age, Religion, Bio, GenderPreference, Photo, Created, Updated ):
         # remove pass and then initialize attributes

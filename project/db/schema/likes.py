@@ -4,7 +4,7 @@ from db.server import db
 class Likes(db.Model):
     __tablename__ = 'Likes'
     LikeID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    UserID = db.Column(db.Integer, db.ForeignKey('user.UserID'))
+    UserID = db.Column(db.Integer, db.ForeignKey('User.UserID'))
     LikedUserID = db.Column(db.Integer)
     DateLiked = db.Column(db.String(8))
 
