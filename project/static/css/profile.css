@@ -1,35 +1,52 @@
+
 * {
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
 
+
 .full-container {
     background-color: #4B5267;
     min-height: 100vh;
+    border-radius: 10px;
 }
+
 
 body {
     background-color: white;
     height: 100vh;
     display: grid;
     justify-items: center;
-    margin: 0;
+    margin: auto;
     text-align: center;
+    max-width: 400px;
 }
+
 
 body p {
     color: white;
     font-size: 20px;
 }
 
+
 .imgButton {
     padding-top: 30px;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 
 .imgButton button {
-    padding: 40px;
+    background: none; /* Remove background from the button */
+    border: none; /* Remove border from the button */
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+
 
 .wrapper {
     position: relative;
@@ -37,12 +54,14 @@ body p {
     height: 87vh;
 }
 
+
 .settings-button {
     position: absolute;
     top: 0;
     right: 0;
     margin: 10px;
 }
+
 
 .settings-button a {
     background-color: #EFBCD5;
@@ -59,9 +78,19 @@ body p {
     text-decoration: none;
 }
 
+
 .settings-button a:hover {
     background-color: #2E294E;
 }
+
+
+/* .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+} */
 
 .buttons {
     display: flex;
@@ -69,6 +98,7 @@ body p {
     gap: 10px;
     justify-content: center;
     align-items: center;
+    margin-top: 20px; /* Add spacing between the profile pic and buttons */
 }
 
 .buttons>button {
@@ -84,9 +114,11 @@ body p {
     transition: background-color 0.3s ease;
 }
 
+
 .buttons>button:hover {
     background-color: #8661c1;
 }
+
 
 body hr {
     color: #2E294E;
@@ -94,43 +126,70 @@ body hr {
     width: 350px;
 }
 
-.footer-nav {
-    list-style-type: none;
-    justify-content: center;
-    padding: 0;
+
+footer {
     display: flex;
     justify-content: center;
-    /* Centers the buttons horizontally */
-    gap: 15px;
-    /* Space between buttons */
-
-}
-
-.footer-nav li {
-    display: inline;
-    /* Makes the list items horizontal */
-}
-
-.footer-nav a {
-    display: inline-block;
-    padding: 10px 20px;
-    text-decoration: none;
-    background-color: #EFBCD5;
-    /* Button color */
-    color: black;
-    border-radius: 5px;
-    text-align: center;
-    font-family: Arial, sans-serif;
+    padding: 15px;
+    background-color: #4B5267;
+    /* Match footer color with header */
+    border-top: 2px solid #EFBCD5;
+    /* Light border for footer */
+  }
+  
+  .bottom-button {
+    width: 45%;
+    padding: 12px;
+    background-color: #4B5267;
+    /* Keep footer buttons styled consistently */
+    color: #EFBCD5;
+    /* Light color for footer buttons */
+    border: 2px solid #EFBCD5;
+    /* Light border for buttons */
+    border-radius: 20px;
+    cursor: pointer;
     font-size: 16px;
-    border-radius: 50px;
-
-}
-
-.footer-nav a:hover {
-    background-color: #8661c1
-        /* Darker color on hover */
-}
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .bottom-button:hover {
+    background-color: #8661C1;
+    /* Change footer button color on hover */
+  }
+  
+  /* Footer Nav Links */
+  .footer-nav {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+  }
+  
+  .footer-nav li {
+    display: inline;
+  }
+  
+  .footer-nav a {
+    display: inline-block;
+    padding: 12px;
+    color: white;
+    background-color: #BE97C6;
+    /* Match link color with footer */
+    border: 2px solid #EFBCD5;
+    /* Light border for links */
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .footer-nav a:hover {
+    background-color: #8661C1;
+    /* Change link color on hover */
+  }
 
 #profilePic {
-    max-width: 150px;
+    max-width: 200px; /* Ensure profile picture has a max width */
+    max-height: 200px; /* Ensure it doesn't stretch vertically */
+    object-fit: cover; /* Maintain the aspect ratio */
 }
