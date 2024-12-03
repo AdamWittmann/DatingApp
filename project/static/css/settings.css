@@ -12,27 +12,29 @@ body {
     align-items: center;
     margin: auto;
     min-height: 100vh;
-    background-color: #4B5267;
+    background-color: white;
     color: white;
 }
 
 hr {
     margin-bottom: 30px;
+    margin-top: 15px;
 }
 
 header {
     font-size: 40px;
     font-weight: bold;
     text-align: center;
-    color: #BE97C6;
+    color: white;
     margin-top: 20px;
     margin-bottom: 40px;
-    text-shadow: 1px 3px #2E294E;
 }
 
 .settings-container {
+    width: 100%;
     max-width: 350px;
-    padding: 25px;
+    padding: 50px;
+    height: 100vh;
     background-color: #333A50;
     border-radius: 15px;
     text-align: center;
@@ -120,3 +122,4 @@ header {
     background-color: #8661c1
         /* Darker color on hover */
 }
+
