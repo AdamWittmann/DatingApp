@@ -32,28 +32,62 @@
       }
     }
 
-    async function handlePass() {
-      loadNextProfile(); // Load the next profile on pass
-    }
-
     async function loadNextProfile() {
       try {
-        const response = await fetch('/next-profile');
-        if (!response.ok) {
-          throw new Error('No more profiles available.');
-        }
-        const profile = await response.json();
+          console.log("Attempting to fetch the next profile...");
+          const response = await fetch('/next-profile');
+          console.log("Fetch response:", response);
 
-        // Update profile details dynamically
-        document.getElementById('profile-image').src = profile.picture_url;
-        document.getElementById('profile-name').innerText = profile.first_name + ' ' + profile.last_name;
-        document.getElementById('profile-age').innerText = 'Age: ' + profile.age;
-        document.getElementById('profile-bio').innerText = 'Bio: ' + profile.bio;
-        document.querySelector('.swipe-button.like').setAttribute('data-user-email', profile.user_email); // Set the email for the like button
+          if (!response.ok) {
+              throw new Error('No more profiles available.');
+          }
+
+          const profile = await response.json();
+          console.log("Fetched profile data:", profile);
+
+          // Update profile details dynamically
+          document.getElementById('profile-image').src = profile.picture_url;
+          document.getElementById('profile-name').innerText = profile.first_name + ' ' + profile.last_name;
+          document.getElementById('profile-age').innerText = 'Age: ' + profile.age;
+          document.getElementById('profile-bio').innerText = 'Bio: ' + profile.bio;
+
+          // Update the data-user-email attribute for the SMASH button
+          const smashButton = document.querySelector('.swipe-button.like');
+          smashButton.setAttribute('data-user-email', profile.user_email);
+          console.log("Updated SMASH button with user email:", profile.user_email);
       } catch (error) {
-        alert(error.message);
+          console.error("Error in loadNextProfile:", error);
+          alert(error.message);
       }
     }
+    // async function loadNextProfile() {
+    //   try {
+    //     console.log("Attempting to fetch the next profile...");
+    //     const response = await fetch('/next-profile');
+    //     console.log("Fetch response:", response);
+
+    //     if (!response.ok) {
+    //       throw new Error('No more profiles available.');
+    //     }
+
+    //     const profile = await response.json();
+    //     console.log("Fetched profile data:", profile);
+
+    //     // Update profile details dynamically
+    //     document.getElementById('profile-image').src = profile.picture_url;
+    //     document.getElementById('profile-name').innerText = profile.first_name + ' ' + profile.last_name;
+    //     document.getElementById('profile-age').innerText = 'Age: ' + profile.age;
+    //     document.getElementById('profile-bio').innerText = 'Bio: ' + profile.bio;
+
+    //     // Update the data-user-email attribute for the SMASH button
+    //     const smashButton = document.querySelector('.swipe-button.like');
+    //     smashButton.setAttribute('data-user-email', profile.user_email); // Set the email for the like button
+    //     console.log("Updated SMASH button with user email:", profile.user_email);
+    //   } catch (error) {
+    //     console.error("Error in loadNextProfile:", error);
+    //     alert(error.message);
+    //   }
+    // }
   </script>
 </head>
 <div class="Filtr">
@@ -77,7 +111,7 @@
       </div>
 
       <div class="swipe-buttons">
-        <button class="swipe-button dislike" onclick="handlePass()">PASS</button>
+        <button class="swipe-button dislike" onclick="loadNextProfile()">PASS</button>
         <button class="swipe-button like" data-user-email="{{ profile.user_email }}" onclick="handleLike(this)">SMASH</button>
       </div>
     </main>

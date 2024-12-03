@@ -68,6 +68,7 @@ def login():
         if user and user.Password == password:
             session['user_email'] = userEmail
             session['user_picture'] = USER_PICTURES.get(userEmail, "static/images/default.jpg")
+            session['profile_index'] = 1
             return redirect(url_for('filtr'))
 
         else:
@@ -190,14 +191,17 @@ def like():
 def next_profile():
     try:
         user_email = session.get('user_email')
+        print(f"Current user email from session: {user_email}")
         if not user_email:
             return jsonify({"error": "User not logged in."}), 403
 
         current_user = db.session.query(User).filter_by(Email=user_email).first()
+        print(f"Current user: {current_user}")
         if not current_user:
             return jsonify({"error": "Current user not found."}), 404
 
         current_profile = db.session.query(Profile).filter_by(UserID=current_user.UserID).first()
+        print(f"Current profile: {current_profile}")
         if not current_profile:
             return jsonify({"error": "Current user profile not found."}), 404
 
@@ -208,20 +212,28 @@ def next_profile():
             .filter(Profile.Gender == current_profile.GenderPreference, Profile.UserID != current_user.UserID)
             .all()
         )
+        print(f"Preferred profiles count: {len(preferred_profiles)}")
 
-        if not preferred_profiles:
+        # Increment profile index before selecting the profile
+        profile_index = session.get('profile_index', 1)
+        if profile_index >= len(preferred_profiles):
             return jsonify({"error": "No more profiles available."}), 404
 
-        selected_profile, selected_user = preferred_profiles[0]
+        session['profile_index'] = profile_index + 1
+        selected_profile, selected_user = preferred_profiles[profile_index]
+        
+        print(f"Selected profile: {selected_profile}, Selected user: {selected_user}")
         profile_data = {
             "user_id": selected_user.UserID,
+            "user_email": selected_user.Email,
             "picture_url": USER_PICTURES.get(selected_user.Email, "static/images/default.jpg"),
             "first_name": selected_user.FirstName,
             "last_name": selected_user.LastName,
             "age": selected_profile.Age,
             "bio": selected_profile.Bio,
         }
-
+        print(f"Profile data to send: {profile_data}")
+        
         return jsonify(profile_data)
 
     except Exception as e:
