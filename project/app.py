@@ -124,20 +124,28 @@ def like():
     try:
         # Get the email of the liked user from the frontend
         data = request.json
+        print(f"Received data: {data}")
         liked_user_email = data.get('likedUserEmail')
+        print(f"Liked user email: {liked_user_email}")
 
         if not liked_user_email:
+            print("Error: Liked user email is missing.")
             return jsonify({"message": "Liked user email is missing."}), 400
 
         # Get the current logged-in user
         user_email = session.get('user_email')
+        print(f"Logged-in user email: {user_email}")
         current_user = db.session.query(User).filter_by(Email=user_email).first()
         if not current_user:
+            print("Error: Current user not found.")
             return jsonify({"message": "User not logged in."}), 403
 
         # Get the liked user's UserID
         liked_user = db.session.query(User).filter_by(Email=liked_user_email).first()
+        print(f"Liked user: {liked_user}")
         if not liked_user:
+            print("Error: Liked user does not exist.")
+            print("{liked_user.UserID}")
             return jsonify({"message": "Liked user does not exist."}), 404
 
         # Insert the new like into the Likes table
@@ -145,12 +153,14 @@ def like():
             UserID=current_user.UserID,
             LikedUserID=liked_user.UserID,
             DateLiked=datetime.now().strftime('%Y%m%d')
-        )
+        ) 
+        print(f"New like object: {new_like}")
         db.session.add(new_like)
         db.session.commit()
 
         # Check for mutual like
         mutual_like = db.session.query(Likes).filter_by(UserID=liked_user.UserID, LikedUserID=current_user.UserID).first()
+        print(f"Mutual like: {mutual_like}")
 
         if mutual_like:
             # Create a match if mutual like exists
@@ -161,6 +171,7 @@ def like():
             )
             db.session.add(match)
             db.session.commit()
+            print(f"Match created: {match}")
 
             # Return match details including phone number
             return jsonify({
@@ -173,8 +184,8 @@ def like():
 
     except Exception as e:
         print(f"Error in /like route: {e}")
-        return jsonify({"message": "Server error.", "error": str(e)}),
-        
+        return jsonify({"message": "Server error.", "error": str(e)}), 500
+
 @app.route('/next-profile', methods=['GET'])
 def next_profile():
     try:

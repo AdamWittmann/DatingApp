@@ -7,6 +7,7 @@
   <script>
     async function handleLike(button) {
       const likedUserEmail = button.getAttribute('data-user-email'); // Fetch the email of the liked user
+      console.log("Liked user email:", likedUserEmail);
       if (!likedUserEmail) {
         alert("Liked user email is missing.");
         return;
