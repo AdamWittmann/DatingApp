@@ -32,10 +32,10 @@ header {
 
 .settings-container {
     width: 100%;
-    max-width: 350px;
+    min-width: 400px;
     padding: 50px;
     height: 100vh;
-    background-color: #333A50;
+    background-color: #4B5267;
     border-radius: 15px;
     text-align: center;
 }
@@ -85,15 +85,18 @@ header {
     background-color: #BE97C6;
 }
 
+.nav-bar {
+    margin-top: 18vh;
+}
+
 .footer-nav {
     list-style-type: none;
     justify-content: center;
-    margin-top: 10px;
     padding: 0;
     display: flex;
     justify-content: center;
     /* Centers the buttons horizontally */
-    gap: 15px;
+    gap: 10px;
     /* Space between buttons */
 
 }
@@ -122,4 +125,3 @@ header {
     background-color: #8661c1
         /* Darker color on hover */
 }
-
