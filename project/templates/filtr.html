@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +26,10 @@
 
         if (result.match) {
           alert('Match! Contact details: ' + result.phoneNumber);
+
+          let matches = JSON.parse(localStorage.getItem('messages')) || [];
+          messages.push({ phone: phoneNumber, image: profileImage });
+          localStorage.setItem('messages', JSON.stringify(matches));
         }
         loadNextProfile(); // Load the next profile after liking
       } catch (error) {
@@ -34,30 +39,30 @@
 
     async function loadNextProfile() {
       try {
-          console.log("Attempting to fetch the next profile...");
-          const response = await fetch('/next-profile');
-          console.log("Fetch response:", response);
+        console.log("Attempting to fetch the next profile...");
+        const response = await fetch('/next-profile');
+        console.log("Fetch response:", response);
 
-          if (!response.ok) {
-              throw new Error('No more profiles available.');
-          }
+        if (!response.ok) {
+          throw new Error('No more profiles available.');
+        }
 
-          const profile = await response.json();
-          console.log("Fetched profile data:", profile);
+        const profile = await response.json();
+        console.log("Fetched profile data:", profile);
 
-          // Update profile details dynamically
-          document.getElementById('profile-image').src = profile.picture_url;
-          document.getElementById('profile-name').innerText = profile.first_name + ' ' + profile.last_name;
-          document.getElementById('profile-age').innerText = 'Age: ' + profile.age;
-          document.getElementById('profile-bio').innerText = 'Bio: ' + profile.bio;
+        // Update profile details dynamically
+        document.getElementById('profile-image').src = profile.picture_url;
+        document.getElementById('profile-name').innerText = profile.first_name + ' ' + profile.last_name;
+        document.getElementById('profile-age').innerText = 'Age: ' + profile.age;
+        document.getElementById('profile-bio').innerText = 'Bio: ' + profile.bio;
 
-          // Update the data-user-email attribute for the SMASH button
-          const smashButton = document.querySelector('.swipe-button.like');
-          smashButton.setAttribute('data-user-email', profile.user_email);
-          console.log("Updated SMASH button with user email:", profile.user_email);
+        // Update the data-user-email attribute for the SMASH button
+        const smashButton = document.querySelector('.swipe-button.like');
+        smashButton.setAttribute('data-user-email', profile.user_email);
+        console.log("Updated SMASH button with user email:", profile.user_email);
       } catch (error) {
-          console.error("Error in loadNextProfile:", error);
-          alert(error.message);
+        console.error("Error in loadNextProfile:", error);
+        alert(error.message);
       }
     }
     // async function loadNextProfile() {
@@ -91,6 +96,7 @@
   </script>
 </head>
 <div class="Filtr">
+
   <body>
     <header>
       <h1 class="logo">Filtr</h1>
@@ -112,7 +118,8 @@
 
       <div class="swipe-buttons">
         <button class="swipe-button dislike" onclick="loadNextProfile()">PASS</button>
-        <button class="swipe-button like" data-user-email="{{ profile.user_email }}" onclick="handleLike(this)">SMASH</button>
+        <button class="swipe-button like" data-user-email="{{ profile.user_email }}"
+          onclick="handleLike(this)">SMASH</button>
       </div>
     </main>
   </body>
@@ -128,4 +135,5 @@
     </nav>
   </footer>
 </div>
+
 </html>

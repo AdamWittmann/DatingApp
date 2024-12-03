@@ -6,44 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/project/static/css/messages.css">
 </head>
+<script>
+    window.onload = function () {
+        const matches = JSON.parse(localStorage.getItem('matches')) || [];
+        const matchesContainer = document.getElementById('matches-container');
+
+        matches.forEach(match => {
+            const matchDiv = document.createElement('div');
+            matchDiv.classList.add('match');
+
+            const img = document.createElement('img');
+            img.src = match.image;
+            img.alt = "Match Picture";
+
+            const phone = document.createElement('p');
+            phone.textContent = match.phone;
+
+            matchDiv.appendChild(img);
+            matchDiv.appendChild(phone);
+            matchesContainer.appendChild(matchDiv);
+        });
+    }
+</script>
 
 <body>
-    <!-- Matches Section -->
     <div class="container">
-        <h2 style="text-align: center;">Matches</h2>
-        <div class="matches">
-            <div class="match">
-                <img src="/project/images/Brock.png" alt="profile picture" class="user-profile-picture">
-                <p>Brock</p>
-            </div>
-            <div class="match">
-                <img src="/project/images/Chlorine.png" alt="profile picture" class="user-profile-picture">
-                <p>Chlorine</p>
-            </div>
-        </div>
-    </div>
-    <!-- Chats Section -->
-    <div class="user-chat-section">
-        <div class="chats-container">
-            <h2 style="text-align: center;">Your Chats</h2>
-            <div class="chat">
-                <img src="/project/images/James.png" alt="" class="user-profile-picture">
-                <div class="chat-content">
-                    <p class="chat-name"><strong>James</strong></p>
-                    <p class="chat-message">Please come over I want you...</p>
-                </div>
-            </div>
-            <div class="chat">
-            <img src="/project/images/Caden.png" alt="" class="user-profile-picture">
-                <div class="chat-content">
-                    <p class="chat-name"><strong>Caden</strong></p>
-                    <p class="chat-message">We can go eat some curly fries and chill after</p>
-                </div>
-            </div
-        </div>
+        <header>
+            <h1 class="logo">Filtr - Matches</h1>
+        </header>
+
+        <main>
+            <div id="matches-container"></div>
+        </main>
+
+        <footer>
+            <nav>
+                <ul class="footer-nav">
+                    <li><a href="/underConstruction">Likes</a></li>
+                    <li><a href="/filtr">Filtr</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/settings">Settings</a></li>
+                </ul>
+            </nav>
+        </footer>
     </div>
 </body>
-<footer>
 
-</footer>
-<html>
+</html>
