@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Resources &#8212; DatingApp 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Troubleshooting" href="troubleshooting.html" />
+    <link rel="prev" title="Development" href="development.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="resources">
+<span id="id1"></span><h1>Resources<a class="headerlink" href="#resources" title="Link to this heading">¶</a></h1>
+<p>This section describes class and functions private to DatingApp. It is intended to document how the application works</p>
+<section id="datingapp-db-schema-education-py">
+<h2>DatingApp.db.schema.education.py<a class="headerlink" href="#datingapp-db-schema-education-py" title="Link to this heading">¶</a></h2>
+<p>Takes user’s education info</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Education">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Education</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db.model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Education" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">_tablename__</span> <span class="pre">=</span> <span class="pre">'Education'</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">EducationID</span> <span class="pre">=</span> <span class="pre">db.Column(db.Integer,</span> <span class="pre">primary_key=True,</span> <span class="pre">autoincrement=True)</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">ProfileID</span> <span class="pre">=</span> <span class="pre">db.Column(db.Integer,db.ForeignKey('Profile.ProfileID'))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Degree</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(30))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Major</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(30))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">GraduationYear</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(4))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">School</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(30))</span></span></dt>
+<dd></dd></dl>
+
+</section>
+<section id="datingapp-db-schema-likes-py">
+<h2>DatingApp.db.schema.likes.py<a class="headerlink" href="#datingapp-db-schema-likes-py" title="Link to this heading">¶</a></h2>
+<p>stores information regarding likes</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Likes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Likes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db.model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Likes" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__tablename__</span> <span class="pre">=</span> <span class="pre">'Likes'</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">LikeID</span> <span class="pre">=</span> <span class="pre">db.Column(db.Integer,</span> <span class="pre">primary_key=True,</span> <span class="pre">autoincrement=True)</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">UserID</span> <span class="pre">=</span> <span class="pre">db.Column(db.Integer,</span> <span class="pre">db.ForeignKey('User.UserID'))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">LikedUserID</span> <span class="pre">=</span> <span class="pre">db.Column(db.Integer)</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">DateLiked</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(8))</span></span></dt>
+<dd></dd></dl>
+
+</section>
+<section id="datingapp-db-schema-matches-py">
+<h2>DatingApp.db.schema.matches.py<a class="headerlink" href="#datingapp-db-schema-matches-py" title="Link to this heading">¶</a></h2>
+<p>stores information regarding matches</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Matches">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Matches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db.model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Matches" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__tablename__</span> <span class="pre">=</span> <span class="pre">'Matches'</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">MatchID</span> <span class="pre">=</span> <span class="pre">db.Column(db.Integer,</span> <span class="pre">primary_key=True,</span> <span class="pre">autoincrement=True)</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">UserID1</span> <span class="pre">=</span> <span class="pre">db.Column(db.Integer)</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">UserID2</span> <span class="pre">=</span> <span class="pre">db.Column(db.Integer)</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">MatchDate</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(8))</span></span></dt>
+<dd></dd></dl>
+
+</section>
+<section id="datingapp-db-schema-occupation-py">
+<h2>DatingApp.db.schema.occupation.py<a class="headerlink" href="#datingapp-db-schema-occupation-py" title="Link to this heading">¶</a></h2>
+<p>stores information regarding user’s occupation/salary</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Occupation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Occupation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db.model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Occupation" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__tablename__</span> <span class="pre">=</span> <span class="pre">'Occupation'</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">OccupationID</span> <span class="pre">=</span> <span class="pre">db.Column(db.Integer,</span> <span class="pre">primary_key=True,</span> <span class="pre">autoincrement=True)</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">ProfileID</span> <span class="pre">=</span> <span class="pre">db.Column(db.Integer,</span> <span class="pre">db.ForeignKey('Profile.ProfileID'))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Job</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(25))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Salary</span> <span class="pre">=</span> <span class="pre">db.Column(db.Integer)</span></span></dt>
+<dd></dd></dl>
+
+</section>
+<section id="datingapp-db-schema-physicalfeatures-py">
+<h2>DatingApp.db.schema.physicalFeatures.py<a class="headerlink" href="#datingapp-db-schema-physicalfeatures-py" title="Link to this heading">¶</a></h2>
+<p>stores information about users physical features</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="PhysicalFeatures">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PhysicalFeatures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db.model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PhysicalFeatures" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__tablename__</span> <span class="pre">=</span> <span class="pre">'PhysicalFeatures'</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">FeatureID</span> <span class="pre">=</span> <span class="pre">db.Column(db.Integer,</span> <span class="pre">primary_key=True,</span> <span class="pre">autoincrement=True)</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">ProfileID</span> <span class="pre">=</span> <span class="pre">db.Column(db.Integer,db.ForeignKey('Profile.ProfileID'))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">HairColor</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(20))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Height</span> <span class="pre">=</span> <span class="pre">db.Column(db.Integer)</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Weight</span> <span class="pre">=</span> <span class="pre">db.Column(db.Integer)</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">EyeColor</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(20))</span></span></dt>
+<dd></dd></dl>
+
+</section>
+<section id="datingapp-db-schema-profile-py">
+<h2>DatingApp.db.schema.profile.py<a class="headerlink" href="#datingapp-db-schema-profile-py" title="Link to this heading">¶</a></h2>
+<p>stores information about user’s profile</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Profile">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db.model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Profile" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__tablename__</span> <span class="pre">=</span> <span class="pre">'Profile'</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">ProfileID</span> <span class="pre">=</span> <span class="pre">db.Column(db.Integer,</span> <span class="pre">primary_key=True,</span> <span class="pre">autoincrement=True)</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">UserID</span> <span class="pre">=</span> <span class="pre">db.Column(db.Integer,</span> <span class="pre">db.ForeignKey('User.UserID'))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Gender</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(255))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Age</span> <span class="pre">=</span> <span class="pre">db.Column(db.Integer)</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Religion</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(255))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Bio</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(255))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">GenderPreference</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(25))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Photo</span> <span class="pre">=</span> <span class="pre">db.Column(db.LargeBinary)</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Created</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(8))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Updated</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(8))</span></span></dt>
+<dd></dd></dl>
+
+</section>
+<section id="datingapp-db-schema-user-py">
+<h2>DatingApp.db.schema.user.py<a class="headerlink" href="#datingapp-db-schema-user-py" title="Link to this heading">¶</a></h2>
+<p>stores information about users</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="User">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">User</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db.model</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#User" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__tablename__</span> <span class="pre">=</span> <span class="pre">'User'</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">UserID</span> <span class="pre">=</span> <span class="pre">db.Column(db.Integer,primary_key=True,</span> <span class="pre">autoincrement=True)</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">FirstName</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(40))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">LastName</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(40))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Email</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(40))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">PhoneNumber</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(12))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">Password</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(256))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">CreditCardNum</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(12))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">ExpirationDate</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(4))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">SecurityCode</span> <span class="pre">=</span> <span class="pre">db.Column(db.Integer)</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">BillingAddress</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(255))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">IsSub</span> <span class="pre">=</span> <span class="pre">db.Column(db.Boolean)</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">SubStart</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(6))</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">SubEnd</span> <span class="pre">=</span> <span class="pre">db.Column(db.String(6))</span></span></dt>
+<dd></dd></dl>
+
+</section>
+<section id="datingapp-db-server">
+<h2>DatingApp.db.server<a class="headerlink" href="#datingapp-db-server" title="Link to this heading">¶</a></h2>
+<p>Creats all database tables</p>
+</section>
+<section id="datingapp-static-css-accountsettings-css">
+<h2>DatingApp.static.css.accountSettings.css<a class="headerlink" href="#datingapp-static-css-accountsettings-css" title="Link to this heading">¶</a></h2>
+<p>Style for account settings page</p>
+</section>
+<section id="datingapp-static-css-educationoccupation-css">
+<h2>DatingApp.static.css.educationOccupation.css<a class="headerlink" href="#datingapp-static-css-educationoccupation-css" title="Link to this heading">¶</a></h2>
+<p>Style for education occupation page</p>
+</section>
+<section id="datingapp-static-css-filtr-css">
+<h2>DatingApp.static.css.filtr.css<a class="headerlink" href="#datingapp-static-css-filtr-css" title="Link to this heading">¶</a></h2>
+<p>Style for filr page</p>
+</section>
+<section id="datingapp-static-css-login-css">
+<h2>DatingApp.static.css.login.css<a class="headerlink" href="#datingapp-static-css-login-css" title="Link to this heading">¶</a></h2>
+<p>Style for login page</p>
+</section>
+<section id="datingapp-static-css-messages-css">
+<h2>DatingApp.static.css.messages.css<a class="headerlink" href="#datingapp-static-css-messages-css" title="Link to this heading">¶</a></h2>
+<p>Style for messages page</p>
+</section>
+<section id="datingapp-static-css-physicalfeatures-css">
+<h2>DatingApp.static.css.physicalFeatures.css<a class="headerlink" href="#datingapp-static-css-physicalfeatures-css" title="Link to this heading">¶</a></h2>
+<p>Style for physical features page</p>
+</section>
+<section id="datingapp-static-css-profile-css">
+<h2>DatingApp.static.css.profile.css<a class="headerlink" href="#datingapp-static-css-profile-css" title="Link to this heading">¶</a></h2>
+<p>Style for profile page</p>
+</section>
+<section id="datingapp-static-css-profilesettings-css">
+<h2>DatingApp.static.css.profileSettings.css<a class="headerlink" href="#datingapp-static-css-profilesettings-css" title="Link to this heading">¶</a></h2>
+<p>Style for profile settings page</p>
+</section>
+<section id="datingapp-static-css-settings-css">
+<h2>DatingApp.static.css.settings.css<a class="headerlink" href="#datingapp-static-css-settings-css" title="Link to this heading">¶</a></h2>
+<p>Style for settings page</p>
+</section>
+<section id="datingapp-static-css-signup-css">
+<h2>DatingApp.static.css.signup.css<a class="headerlink" href="#datingapp-static-css-signup-css" title="Link to this heading">¶</a></h2>
+<p>Style for sign up page</p>
+</section>
+<section id="datingapp-static-css-underconstruction-css">
+<h2>DatingApp.static.css.underConstruction.css<a class="headerlink" href="#datingapp-static-css-underconstruction-css" title="Link to this heading">¶</a></h2>
+<p>Style for under construction page</p>
+</section>
+<section id="datingapp-static-js-settings">
+<h2>DatingApp.static.js.settings<a class="headerlink" href="#datingapp-static-js-settings" title="Link to this heading">¶</a></h2>
+<p>javascript for settings page</p>
+<p>function: areYouSure- deletes account</p>
+</section>
+<section id="datingapp-static-js-signup">
+<h2>DatingApp.static.js.signup<a class="headerlink" href="#datingapp-static-js-signup" title="Link to this heading">¶</a></h2>
+<p>javascript for signup page</p>
+<p>function: showAlert- popup message</p>
+</section>
+<section id="datingapp-templates-accountsettings-html">
+<h2>DatingApp.templates.accountSettings.html<a class="headerlink" href="#datingapp-templates-accountsettings-html" title="Link to this heading">¶</a></h2>
+<p>Account settings page</p>
+</section>
+<section id="datingapp-templates-entereducation-html">
+<h2>DatingApp.templates.enterEducation.html<a class="headerlink" href="#datingapp-templates-entereducation-html" title="Link to this heading">¶</a></h2>
+<p>enter education page</p>
+<p>part of profile setup</p>
+</section>
+<section id="datingapp-templates-enteroccupation-html">
+<h2>DatingApp.templates.enterOccupation.html<a class="headerlink" href="#datingapp-templates-enteroccupation-html" title="Link to this heading">¶</a></h2>
+<p>enter occupation page</p>
+<p>part of profile setup</p>
+</section>
+<section id="datingapp-templates-filtr-html">
+<h2>DatingApp.templates.filtr.html<a class="headerlink" href="#datingapp-templates-filtr-html" title="Link to this heading">¶</a></h2>
+<p>filtr home page</p>
+<p>main page for user interaction, allows users o view other user’s and eithier “smash” or “pass” on thier profile</p>
+</section>
+<section id="datingapp-templates-login-html">
+<h2>DatingApp.templates.login.html<a class="headerlink" href="#datingapp-templates-login-html" title="Link to this heading">¶</a></h2>
+<p>Login page</p>
+</section>
+<section id="datingapp-templates-messages-html">
+<h2>DatingApp.templates.messages.html<a class="headerlink" href="#datingapp-templates-messages-html" title="Link to this heading">¶</a></h2>
+<p>messages page</p>
+</section>
+<section id="datingapp-templates-physicalfeatures-html">
+<h2>DatingApp.templates.physicalFeatures.html<a class="headerlink" href="#datingapp-templates-physicalfeatures-html" title="Link to this heading">¶</a></h2>
+<p>physical features page</p>
+<p>user’s enter thier physical features part of profile setup</p>
+</section>
+<section id="datingapp-templates-profile-html">
+<h2>DatingApp.templates.profile.html<a class="headerlink" href="#datingapp-templates-profile-html" title="Link to this heading">¶</a></h2>
+<p>profile page</p>
+<p>user can view thier profile change thier picture and buy premium services</p>
+</section>
+<section id="datingapp-templates-profilesettings-html">
+<h2>DatingApp.templates.profileSettings.html<a class="headerlink" href="#datingapp-templates-profilesettings-html" title="Link to this heading">¶</a></h2>
+<p>profile settings page</p>
+<p>settings for specifcally the user’s profile</p>
+</section>
+<section id="datingapp-templates-settings-html">
+<h2>DatingApp.templates.settings.html<a class="headerlink" href="#datingapp-templates-settings-html" title="Link to this heading">¶</a></h2>
+<p>settings page</p>
+</section>
+<section id="datingapp-templates-signup-html">
+<h2>DatingApp.templates.signup.html<a class="headerlink" href="#datingapp-templates-signup-html" title="Link to this heading">¶</a></h2>
+<p>signup page</p>
+<p>for users to signup with filtr</p>
+</section>
+<section id="datingapp-templates-underconstruction-html">
+<h2>DatingApp.templates.underConstruction.html<a class="headerlink" href="#datingapp-templates-underconstruction-html" title="Link to this heading">¶</a></h2>
+<p>under construction page</p>
+<p>placeholder for pages that are being worked on.</p>
+</section>
+<section id="datingapp-app">
+<h2>DatingApp.app<a class="headerlink" href="#datingapp-app" title="Link to this heading">¶</a></h2>
+<p>Sets up functionality of webpages and holds query’s needed for the application</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">DatingApp</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-db-schema-education-py">DatingApp.db.schema.education.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-db-schema-likes-py">DatingApp.db.schema.likes.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-db-schema-matches-py">DatingApp.db.schema.matches.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-db-schema-occupation-py">DatingApp.db.schema.occupation.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-db-schema-physicalfeatures-py">DatingApp.db.schema.physicalFeatures.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-db-schema-profile-py">DatingApp.db.schema.profile.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-db-schema-user-py">DatingApp.db.schema.user.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-db-server">DatingApp.db.server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-static-css-accountsettings-css">DatingApp.static.css.accountSettings.css</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-static-css-educationoccupation-css">DatingApp.static.css.educationOccupation.css</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-static-css-filtr-css">DatingApp.static.css.filtr.css</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-static-css-login-css">DatingApp.static.css.login.css</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-static-css-messages-css">DatingApp.static.css.messages.css</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-static-css-physicalfeatures-css">DatingApp.static.css.physicalFeatures.css</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-static-css-profile-css">DatingApp.static.css.profile.css</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-static-css-profilesettings-css">DatingApp.static.css.profileSettings.css</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-static-css-settings-css">DatingApp.static.css.settings.css</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-static-css-signup-css">DatingApp.static.css.signup.css</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-static-css-underconstruction-css">DatingApp.static.css.underConstruction.css</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-static-js-settings">DatingApp.static.js.settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-static-js-signup">DatingApp.static.js.signup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-templates-accountsettings-html">DatingApp.templates.accountSettings.html</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-templates-entereducation-html">DatingApp.templates.enterEducation.html</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-templates-enteroccupation-html">DatingApp.templates.enterOccupation.html</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-templates-filtr-html">DatingApp.templates.filtr.html</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-templates-login-html">DatingApp.templates.login.html</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-templates-messages-html">DatingApp.templates.messages.html</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-templates-physicalfeatures-html">DatingApp.templates.physicalFeatures.html</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-templates-profile-html">DatingApp.templates.profile.html</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-templates-profilesettings-html">DatingApp.templates.profileSettings.html</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-templates-settings-html">DatingApp.templates.settings.html</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-templates-signup-html">DatingApp.templates.signup.html</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-templates-underconstruction-html">DatingApp.templates.underConstruction.html</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#datingapp-app">DatingApp.app</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="development.html" title="previous chapter">Development</a></li>
+      <li>Next: <a href="troubleshooting.html" title="next chapter">Troubleshooting</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Tomas,Adam,Pedro,Ryan.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/resources.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
