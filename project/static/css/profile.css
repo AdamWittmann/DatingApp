@@ -1,8 +1,9 @@
-
 * {
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
+
+
 
 
 .full-container {
@@ -12,21 +13,26 @@
 }
 
 
+
+
 body {
     background-color: white;
     height: 100vh;
     display: grid;
     justify-items: center;
-    margin: auto;
+    margin: 0;
     text-align: center;
-    max-width: 400px;
 }
+
+
 
 
 body p {
     color: white;
     font-size: 20px;
 }
+
+
 
 
 .imgButton {
@@ -37,14 +43,21 @@ body p {
 }
 
 
+
+
 .imgButton button {
-    background: none; /* Remove background from the button */
-    border: none; /* Remove border from the button */
+    background: none;
+    /* Remove background from the button */
+    border: none;
+    /* Remove border from the button */
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+
+
 
 
 
@@ -55,12 +68,16 @@ body p {
 }
 
 
+
+
 .settings-button {
     position: absolute;
     top: 0;
     right: 0;
     margin: 10px;
 }
+
+
 
 
 .settings-button a {
@@ -79,9 +96,13 @@ body p {
 }
 
 
+
+
 .settings-button a:hover {
     background-color: #2E294E;
 }
+
+
 
 
 /* .buttons {
@@ -92,14 +113,17 @@ body p {
     align-items: center;
 } */
 
+
 .buttons {
     display: flex;
     flex-direction: column;
     gap: 10px;
     justify-content: center;
     align-items: center;
-    margin-top: 20px; /* Add spacing between the profile pic and buttons */
+    margin-top: 20px;
+    /* Add spacing between the profile pic and buttons */
 }
+
 
 .buttons>button {
     width: 150px;
@@ -115,9 +139,13 @@ body p {
 }
 
 
+
+
 .buttons>button:hover {
     background-color: #8661c1;
 }
+
+
 
 
 body hr {
@@ -125,6 +153,8 @@ body hr {
     height: 1px;
     width: 350px;
 }
+
+
 
 
 footer {
@@ -135,9 +165,9 @@ footer {
     /* Match footer color with header */
     border-top: 2px solid #EFBCD5;
     /* Light border for footer */
-  }
-  
-  .bottom-button {
+}
+
+.bottom-button {
     width: 45%;
     padding: 12px;
     background-color: #4B5267;
@@ -151,26 +181,26 @@ footer {
     font-size: 16px;
     text-align: center;
     transition: background-color 0.3s ease;
-  }
-  
-  .bottom-button:hover {
+}
+
+.bottom-button:hover {
     background-color: #8661C1;
     /* Change footer button color on hover */
-  }
-  
-  /* Footer Nav Links */
-  .footer-nav {
+}
+
+/* Footer Nav Links */
+.footer-nav {
     list-style-type: none;
     padding: 0;
     display: flex;
     gap: 15px;
-  }
-  
-  .footer-nav li {
+}
+
+.footer-nav li {
     display: inline;
-  }
-  
-  .footer-nav a {
+}
+
+.footer-nav a {
     display: inline-block;
     padding: 12px;
     color: white;
@@ -181,15 +211,19 @@ footer {
     border-radius: 20px;
     text-decoration: none;
     transition: background-color 0.3s ease;
-  }
-  
-  .footer-nav a:hover {
+}
+
+.footer-nav a:hover {
     background-color: #8661C1;
     /* Change link color on hover */
-  }
+}
+
 
 #profilePic {
-    max-width: 200px; /* Ensure profile picture has a max width */
-    max-height: 200px; /* Ensure it doesn't stretch vertically */
-    object-fit: cover; /* Maintain the aspect ratio */
+    max-width: 200px;
+    /* Ensure profile picture has a max width */
+    max-height: 200px;
+    /* Ensure it doesn't stretch vertically */
+    object-fit: cover;
+    /* Maintain the aspect ratio */
 }
