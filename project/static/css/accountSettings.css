@@ -29,7 +29,7 @@ body {
     margin: auto;
     min-height: 100vh;
     /* Full height of the viewport */
-    
+
     color: white;
 }
 
@@ -43,8 +43,9 @@ header {
     margin-bottom: 20px;
 }
 
-
+/*gives illusion of phone display*/
 .settings-container {
+    height: 100%;
     text-align: center;
     padding: 40px;
     max-width: 400px;

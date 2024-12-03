@@ -4,16 +4,18 @@
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
-.page{
+
+.page {
+    min-height: 100vh;
     text-align: center;
     padding: 40px;
-    max-width: 400px;
+    width: 400px;
     background-color: #4B5267;
     color: white;
     border-radius: 10px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
     /* Optional shadow for better visibility */
-  
+
 }
 
 header {
@@ -72,16 +74,18 @@ body div h1 {
 
 .login input {
     padding: 10px;
-    border: 1.5px solid grey ;
-    
+    border: 1.5px solid grey;
+
 }
 
-.login button {
+.login #button {
     padding: 10px;
+    color: white;
     font-weight: bold;
-    color: #2E294E;
-
-
+    background-color: #8661C1;
+    border: none;
+    box-shadow: #2E294E 1px 3px;
+    ;
 }
 
 .login label,
