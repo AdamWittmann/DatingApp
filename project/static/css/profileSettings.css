@@ -42,17 +42,21 @@ body {
 /* Form Header */
 .form-container h1 {
     font-size: 2rem;
-    color: #ffffff;
+    color: #BE97C6;
     margin-bottom: 20px;
+    text-shadow: 2px 4px #2E294E;
+    margin-top: 20px;
+    text-align: center;
+    
 }
 
 /* Labels */
 .form-container label {
     display: block;
-    font-size: 1rem;
+    font-size: 20px;
     color: #ffffff;
     margin-bottom: 5px;
-    text-align: left;
+    text-align: center;
 }
 
 /* Input Fields */
@@ -65,7 +69,7 @@ body {
     margin-bottom: 15px;
     font-size: 1rem;
     color: grey;
-    border: 1px solid #ddd;
+    border: 3px solid #2E294E;
     border-radius: 20px;
 }
 
