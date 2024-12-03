@@ -38,9 +38,10 @@ hr {
 }
 
 header {
-    font-size: 1.5rem;
-    color: #ffffff;
+    font-size: 1.25rem;
+    color: #BE97C6;
     margin-bottom: 20px;
+    text-shadow: 2px 4px #2E294E;
 }
 
 /*gives illusion of phone display*/
@@ -53,6 +54,7 @@ header {
     color: white;
     border-radius: 10px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
     /* Optional shadow for better visibility */
 }
 
@@ -74,7 +76,7 @@ header {
     width: 100%;
     padding: 10px;
     border-radius: 20px;
-    border: 1px solid grey;
+    border: 3px solid #2E294E;
     font-size: 16px;
 }
 
