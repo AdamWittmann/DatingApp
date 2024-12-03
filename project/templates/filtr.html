@@ -1,43 +1,96 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../static/css/filtr.css">
-  
-  <!--Scripting for liking Users-->
   <script>
     async function handleLike(button) {
-    const likedUserID = button.getAttribute('data-user-id');
-    const response = await fetch('/like', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ likedUserID })
-    });
-    const result = await response.json();
-    alert(result.message);
-    if (result.match) {
-      alert('Match! Contact details: ' + result.phoneNumbers);
-    }
-    loadNextProfile();
+      const likedUserEmail = button.getAttribute('data-user-email'); // Fetch the email of the liked user
+      console.log("Liked user email:", likedUserEmail);
+      if (!likedUserEmail) {
+        alert("Liked user email is missing.");
+        return;
+      }
+      try {
+        const response = await fetch('/like', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ likedUserEmail }) // Send the email to the backend
+        });
+        const result = await response.json();
+        alert(result.message);
+
+        if (result.match) {
+          alert('Match! Contact details: ' + result.phoneNumber);
+        }
+        loadNextProfile(); // Load the next profile after liking
+      } catch (error) {
+        console.error('Error liking user:', error);
+      }
     }
 
-    async function handlePass() {
-      loadNextProfile();
-    }
+    async function loadNextProfile() {
+      try {
+          console.log("Attempting to fetch the next profile...");
+          const response = await fetch('/next-profile');
+          console.log("Fetch response:", response);
 
-    function loadNextProfile() {
-      // Function to dynamically load the next profile
-      // For now, it simply reloads the page to simulate fetching the next profile
-      window.location.reload();
+          if (!response.ok) {
+              throw new Error('No more profiles available.');
+          }
+
+          const profile = await response.json();
+          console.log("Fetched profile data:", profile);
+
+          // Update profile details dynamically
+          document.getElementById('profile-image').src = profile.picture_url;
+          document.getElementById('profile-name').innerText = profile.first_name + ' ' + profile.last_name;
+          document.getElementById('profile-age').innerText = 'Age: ' + profile.age;
+          document.getElementById('profile-bio').innerText = 'Bio: ' + profile.bio;
+
+          // Update the data-user-email attribute for the SMASH button
+          const smashButton = document.querySelector('.swipe-button.like');
+          smashButton.setAttribute('data-user-email', profile.user_email);
+          console.log("Updated SMASH button with user email:", profile.user_email);
+      } catch (error) {
+          console.error("Error in loadNextProfile:", error);
+          alert(error.message);
+      }
     }
+    // async function loadNextProfile() {
+    //   try {
+    //     console.log("Attempting to fetch the next profile...");
+    //     const response = await fetch('/next-profile');
+    //     console.log("Fetch response:", response);
+
+    //     if (!response.ok) {
+    //       throw new Error('No more profiles available.');
+    //     }
+
+    //     const profile = await response.json();
+    //     console.log("Fetched profile data:", profile);
+
+    //     // Update profile details dynamically
+    //     document.getElementById('profile-image').src = profile.picture_url;
+    //     document.getElementById('profile-name').innerText = profile.first_name + ' ' + profile.last_name;
+    //     document.getElementById('profile-age').innerText = 'Age: ' + profile.age;
+    //     document.getElementById('profile-bio').innerText = 'Bio: ' + profile.bio;
+
+    //     // Update the data-user-email attribute for the SMASH button
+    //     const smashButton = document.querySelector('.swipe-button.like');
+    //     smashButton.setAttribute('data-user-email', profile.user_email); // Set the email for the like button
+    //     console.log("Updated SMASH button with user email:", profile.user_email);
+    //   } catch (error) {
+    //     console.error("Error in loadNextProfile:", error);
+    //     alert(error.message);
+    //   }
+    // }
   </script>
 </head>
-<div class=Filtr>
-
+<div class="Filtr">
   <body>
     <header>
       <h1 class="logo">Filtr</h1>
@@ -46,34 +99,33 @@
         <button class="top-button" onclick="window.location.href='/filters'">Filters</button>
       </div>
     </header>
-  
+
     <main>
-      
-      <!--Swipe area users displayed here-->
       <div class="swipe-area">
         <div class="profile-card">
           <img id="profile-image" src="{{ profile.picture_url }}" alt="User Profile Picture">
-          <div id="profile-text">{{ profile.prompt }}</div>
+          <h3 id="profile-name">{{ profile.first_name }} {{ profile.last_name }}</h3>
+          <p id="profile-age">Age: {{ profile.age }}</p>
+          <p id="profile-bio">Bio: {{ profile.bio }}</p>
         </div>
       </div>
-  
+
       <div class="swipe-buttons">
-        <button class="swipe-button dislike" onclick="handlePass()">PASS</button>
-        <button class="swipe-button like" data-user-id="{{ profile.user_id }}" onclick="handleLike(this)">SMASH</button>
+        <button class="swipe-button dislike" onclick="loadNextProfile()">PASS</button>
+        <button class="swipe-button like" data-user-email="{{ profile.user_email }}" onclick="handleLike(this)">SMASH</button>
       </div>
     </main>
   </body>
 
-  <!--Footer Nav bar -->
-<footer>
-  <nav>
-    <ul class="footer-nav">
-      <li><a href="/underConstruction">Likes</a></li>
-      <li><a href="/filtr">Filtr</a></li>
-      <li><a href="/profile">Profile</a></li>
-      <li><a href="/settings">Settings</a></li>
-    </ul>
-  </nav>
-</footer>
-
+  <footer>
+    <nav>
+      <ul class="footer-nav">
+        <li><a href="/underConstruction">Likes</a></li>
+        <li><a href="/filtr">Filtr</a></li>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/settings">Settings</a></li>
+      </ul>
+    </nav>
+  </footer>
+</div>
 </html>
