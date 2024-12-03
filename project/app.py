@@ -3,10 +3,13 @@
 from flask import request, render_template, redirect, url_for, session, jsonify
 
 from sqlalchemy import insert, text, select
+from datetime import datetime
 
 from db.server import app
 from db.server import db
 
+from db.schema.matches import Matches
+from db.schema.likes import Likes
 from db.schema.user import User
 from db.schema.profile import Profile
 from db.schema.education import Education
@@ -75,7 +78,6 @@ def login():
 
 @app.route('/filtr')
 def filtr():
-    # Fetch profiles of the opposite gender
     user_email = session.get('user_email')
     if not user_email:
         return redirect(url_for('login'))
@@ -88,51 +90,132 @@ def filtr():
     if not current_profile:
         return redirect(url_for('profileSettings'))
 
-    # Find profiles matching the user's gender preference
-    opposite_profiles = db.session.query(Profile, User).join(User, Profile.UserID == User.UserID).filter(Profile.Gender == current_profile.GenderPreference, Profile.GenderPreference == current_profile.Gender).all()
+    # Fetch profiles matching the preferred gender
+    preferred_profiles = (
+        db.session.query(Profile, User)
+        .join(User, Profile.UserID == User.UserID)
+        .filter(Profile.Gender == current_profile.GenderPreference, Profile.UserID != current_user.UserID)
+        .all()
+    )
 
-    if not opposite_profiles:
+    if not preferred_profiles:
         return render_template("filtr.html", profile=None)
 
-    # Select the first profile from the result (for simplicity)
-    selected_profile = opposite_profiles[0]
+    selected_profile, selected_user = preferred_profiles[0]
+
+    # Ensure the email exists in the dictionary to retrieve the picture
+    selected_email = selected_user.Email
+    picture_url = USER_PICTURES.get(selected_email, "static/images/default.jpg")
+
     profile_data = {
-        "user_id": selected_profile.User.UserID,
-        "picture_url": USER_PICTURES.get(selected_profile.User.Email, "static/images/default.jpg"),
-        "prompt": f"{selected_profile.User.FirstName}, {selected_profile.User.LastName}"
+        "user_id": selected_user.UserID,
+        "user_email": selected_email,  # Email retrieved from the User table
+        "picture_url": picture_url,  # Picture retrieved from the dictionary
+        "first_name": selected_user.FirstName,
+        "last_name": selected_user.LastName,
+        "age": selected_profile.Age,
+        "bio": selected_profile.Bio,
     }
 
     return render_template("filtr.html", profile=profile_data)
 
 @app.route('/like', methods=['POST'])
 def like():
-    data = request.json
-    liked_user_id = data.get('likedUserID')
+    try:
+        # Get the email of the liked user from the frontend
+        data = request.json
+        liked_user_email = data.get('likedUserEmail')
 
-    user_email = session.get('user_email')
-    current_user = db.session.query(User).filter_by(Email=user_email).first()
-    if not current_user:
-        return jsonify({"message": "User not logged in."}), 403
+        if not liked_user_email:
+            return jsonify({"message": "Liked user email is missing."}), 400
 
-    # Check if the liked user liked back
-    mutual_like = db.session.query(Likes).filter_by(UserID=liked_user_id, LikedUserID=current_user.UserID).first()
+        # Get the current logged-in user
+        user_email = session.get('user_email')
+        current_user = db.session.query(User).filter_by(Email=user_email).first()
+        if not current_user:
+            return jsonify({"message": "User not logged in."}), 403
 
-    if mutual_like:
-        # Create a match if mutual
-        match = Matches(UserID1=current_user.UserID, UserID2=liked_user_id, MatchDate=datetime.now().strftime('%Y%m%d'))
-        db.session.add(match)
+        # Get the liked user's UserID
+        liked_user = db.session.query(User).filter_by(Email=liked_user_email).first()
+        if not liked_user:
+            return jsonify({"message": "Liked user does not exist."}), 404
+
+        # Insert the new like into the Likes table
+        new_like = Likes(
+            UserID=current_user.UserID,
+            LikedUserID=liked_user.UserID,
+            DateLiked=datetime.now().strftime('%Y%m%d')
+        )
+        db.session.add(new_like)
         db.session.commit()
 
-        # Fetch phone numbers to display
-        liked_user = db.session.query(User).filter_by(UserID=liked_user_id).first()
-        return jsonify({"message": "It's a match!", "match": True, "phoneNumbers": [current_user.PhoneNumber, liked_user.PhoneNumber]})
+        # Check for mutual like
+        mutual_like = db.session.query(Likes).filter_by(UserID=liked_user.UserID, LikedUserID=current_user.UserID).first()
 
-    # If no mutual like, just add the like entry
-    new_like = Likes(UserID=current_user.UserID, LikedUserID=liked_user_id, DateLiked=datetime.now().strftime('%Y%m%d'))
-    db.session.add(new_like)
-    db.session.commit()
+        if mutual_like:
+            # Create a match if mutual like exists
+            match = Matches(
+                UserID1=current_user.UserID,
+                UserID2=liked_user.UserID,
+                MatchDate=datetime.now().strftime('%Y%m%d')
+            )
+            db.session.add(match)
+            db.session.commit()
 
-    return jsonify({"message": "User liked successfully.", "match": False})
+            # Return match details including phone number
+            return jsonify({
+                "message": "It's a match!",
+                "match": True,
+                "phoneNumber": liked_user.PhoneNumber
+            })
+
+        return jsonify({"message": "User liked successfully.", "match": False})
+
+    except Exception as e:
+        print(f"Error in /like route: {e}")
+        return jsonify({"message": "Server error.", "error": str(e)}),
+        
+@app.route('/next-profile', methods=['GET'])
+def next_profile():
+    try:
+        user_email = session.get('user_email')
+        if not user_email:
+            return jsonify({"error": "User not logged in."}), 403
+
+        current_user = db.session.query(User).filter_by(Email=user_email).first()
+        if not current_user:
+            return jsonify({"error": "Current user not found."}), 404
+
+        current_profile = db.session.query(Profile).filter_by(UserID=current_user.UserID).first()
+        if not current_profile:
+            return jsonify({"error": "Current user profile not found."}), 404
+
+        # Fetch the next profile matching the preferred gender
+        preferred_profiles = (
+            db.session.query(Profile, User)
+            .join(User, Profile.UserID == User.UserID)
+            .filter(Profile.Gender == current_profile.GenderPreference, Profile.UserID != current_user.UserID)
+            .all()
+        )
+
+        if not preferred_profiles:
+            return jsonify({"error": "No more profiles available."}), 404
+
+        selected_profile, selected_user = preferred_profiles[0]
+        profile_data = {
+            "user_id": selected_user.UserID,
+            "picture_url": USER_PICTURES.get(selected_user.Email, "static/images/default.jpg"),
+            "first_name": selected_user.FirstName,
+            "last_name": selected_user.LastName,
+            "age": selected_profile.Age,
+            "bio": selected_profile.Bio,
+        }
+
+        return jsonify(profile_data)
+
+    except Exception as e:
+        print(f"Error in /next-profile route: {e}")
+        return jsonify({"error": "Server error.", "details": str(e)}), 500
 
 @app.route('/underConstruction')
 def underConstruction():
